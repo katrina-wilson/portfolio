@@ -1,0 +1,10 @@
+@import "tailwindcss" important prefix(tw);
+
+/* @theme {
+    --color-primary: rgba(var(--v-theme-primary));
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+} */
