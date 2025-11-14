@@ -1,8 +1,7 @@
 <template>
-    <nav class="tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
+    <div class="tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
       <div class="tw:mx-auto tw:px-6 tw:py-4 tw:flex tw:items-center tw:justify-between">
         
-        <!-- Logo -->
         <button
           @click="scrollToSection('home')"
           class="tw:text-xl tw:font-semibold"
@@ -64,7 +63,7 @@
           </v-btn>
         </div>
       </v-navigation-drawer>
-    </nav>
+    </div>
 </template>
   
 <script setup>

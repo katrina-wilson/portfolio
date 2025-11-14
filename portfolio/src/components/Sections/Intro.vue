@@ -32,7 +32,6 @@ const displayRole = ref('');
 const currentRoleIndex = ref(0);
 const isDeleting = ref(false);
 
-
 watch(([displayRole, isDeleting, currentRoleIndex]), () => {
     const currentRole = roles[currentRoleIndex.value];
     const typingSpeed = isDeleting.value ? 50 : 100;
