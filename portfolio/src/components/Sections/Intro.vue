@@ -7,16 +7,16 @@
 
         <div class="tw:mx-auto tw:px-6 tw:text-center tw:relative tw:z-10">
             <div class="tw:w-full tw:text-6xl tw:md:text-8xl tw:font-bold tw:text-foreground tw:mb-6 tw:tracking-tight">
-                Hey, I'm Katrina
+                Hey, I'm Katrina!
             </div>
 
             <div class="tw:inline-flex tw:items-center tw:gap-3 tw:text-xl tw:md:text-2xl">
-                <span class="ts:text-muted-foreground">
+                <span class="tw:text-muted-foreground">
                     I am a
                 </span>
                 <span class="tw:font-medium tw:min-w-[200px] tw:text-foreground">
                     {{ displayRole }}
-                    <span class="animate-pulse">|</span>
+                    <span class="tw:animate-pulse">|</span>
                 </span>
             </div>
         </div>
@@ -64,7 +64,5 @@ watch(([displayRole, isDeleting, currentRoleIndex]), () => {
   },
   { immediate: true }
 );
-
-
 </script>
   

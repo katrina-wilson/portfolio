@@ -1,14 +1,10 @@
 @import "tailwindcss" important prefix(tw);
 
-@theme {
-    --color-primary: rgba(var(--v-theme-primary));
-    --color-toggle-bg-light: rgba(var(--v-theme-toggle-bg-light));
-    --color-toggle-sun: rgba(var(--v-theme-toggle-sun));
-    --color-toggle-sun-inner: rgba(var(--v-theme-toggle-sun-inner)); 
-    --color-toggle-cloud: rgba(var(--v-theme-toggle-cloud)); 
-    --color-toggle-bg-dark: rgba(var(--v-theme-toggle-bg-dark)); 
-    --color-toggle-moon: rgba(var(--v-theme-toggle-moon)); 
-    --color-toggle-star: rgba(var(--v-theme-toggle-star));
+@theme inline {
+    --color-primary: rgb(var(--v-theme-primary));
+    --color-primary-foreground: rgb(var(--v-theme-primary-foreground));
+
+    --color-muted-foreground: rgb(var(--v-theme-muted-foreground));
 }
 
 #app {
