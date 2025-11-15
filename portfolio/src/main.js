@@ -10,6 +10,15 @@ import { dark, light } from '@/assets/colors';
 import '../index.css';
 import '@mdi/font/css/materialdesignicons.css';
 
+import '@fontsource/google-sans-code';
+
+// GSAP 
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { GSDevTools } from "gsap/GSDevTools";
+gsap.registerPlugin(ScrollTrigger, GSDevTools);
+GSDevTools.create();
+
 import App from './App.vue';
 import router from './router';
 

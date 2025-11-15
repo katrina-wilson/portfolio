@@ -1,5 +1,6 @@
 <template>
     <div class="tw:flex tw:flex-col tw:h-full tw:w-full">
+        <TopNav/>
         <main class="tw:flex tw:flex-grow tw:w-full tw:overflow-y-auto">
             <RouterView
                 v-slot="{ Component }"
@@ -14,4 +15,5 @@
 
 <script setup>
 import { RouterView } from 'vue-router';
+import TopNav from "@/components/TopNav.vue";
 </script>

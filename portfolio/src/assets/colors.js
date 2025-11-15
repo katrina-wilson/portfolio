@@ -1,5 +1,7 @@
 export const light = {
-    background: '#fafafa',
+    background: '#FFF6DF',
+
+
     foreground: '#2a303b',
   
     card: '#ffffff',
@@ -8,7 +10,7 @@ export const light = {
     popover: '#ffffff',
     'popover-foreground': '#2a303b',
   
-    primary: '#6faf98',
+    primary: '#C05746',
     'primary-foreground': '#fafafa',
   
     secondary: '#f1ddbf',

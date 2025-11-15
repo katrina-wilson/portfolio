@@ -42,22 +42,22 @@ const projectCardRef = ref(null);
 onMounted(() => {   
 
     if (projectCardRef.value == null) return;
-    
-    const ctx = gsap.context(() => {
-      gsap.from(".project-card", {
-        y: 60,
-        opacity: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.value.current,
-          start: "top center",
-        },
-      });
-    }, sectionRef);
 
-    return () => ctx.revert();
+    // const ctx = gsap.context(() => {
+    //   gsap.from(".project-card", {
+    //     y: 60,
+    //     opacity: 0,
+    //     duration: 0.8,
+    //     stagger: 0.15,
+    //     ease: "power3.out",
+    //     scrollTrigger: {
+    //       trigger: sectionRef.value.current,
+    //       start: "top center",
+    //     },
+    //   });
+    // }, sectionRef);
+
+    // return () => ctx.revert();
 });
 </script>
   

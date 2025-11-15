@@ -3,7 +3,7 @@
       ref="toggleRef"
       @click="toggleTheme"
       :class="[
-        'tw:relative tw:w-20 tw:h-10 tw:rounded-full tw:transition-colors tw:duration-400 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-ring tw:focus:ring-offset-2',
+        'tw:w-20 tw:h-10 tw:rounded-full tw:transition-colors tw:duration-400 tw:focus:outline-none tw:focus:ring-2 tw:focus:ring-ring tw:focus:ring-offset-2',
         isDark
           ? 'tw:bg-toggle-bg-dark tw:border tw:border-border/30'
           : 'tw:bg-toggle-bg-light'
@@ -59,7 +59,7 @@
   
         <!-- Moon (crescent) -->
         <div ref="sunRef" class="tw:absolute tw:top-1.5 tw:left-1.5 tw:w-7 tw:h-7">
-          <div class="tw:relative tw:w-full tw:h-full">
+          <div class="tw:w-full tw:h-full">
             <div class="tw:absolute tw:inset-0 tw:rounded-full tw:bg-toggle-moon" />
             <div class="tw:absolute tw:top-0.5 tw:left-1 tw:w-5.5 tw:h-6 tw:rounded-full tw:bg-toggle-bg-dark" />
           </div>

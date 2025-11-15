@@ -1,11 +1,11 @@
 
 export const roles = [
-    'Software Engineer',
-    'Designer',
-    'Creative',
-    'Tech Enthusiast',
-    'Lifelong Learner',
-    'Problem Solver',
+    'software engineer',
+    'tech enthusiast',
+    'designer',
+    'creative',
+    'lifelong learner',
+    'problem solver',
 ];
 
 export const skills = [

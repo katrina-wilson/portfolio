@@ -2,6 +2,8 @@
   <v-card
     class="mx-auto"
     max-width="344"
+    rounded="lg"
+    outlined
     hover
   >
     <v-card-item>
