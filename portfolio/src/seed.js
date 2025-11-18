@@ -9,7 +9,10 @@ export const roles = [
 ];
 
 export const skills = [
-
+    { name: "Front End", value: 62, color: "#5DB7DE" },
+    { name: "UI/UX Design", value: 20, color: "#197196" },
+    { name: "Back End", value: 10, color: "#003C80" },
+    { name: "Data Science", value: 8, color: "#011936" },
 ];
 
 export const projects = [
