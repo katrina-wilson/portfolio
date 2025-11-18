@@ -20,7 +20,7 @@
                 </span>
             </div>
 
-            <!-- GSAPE EXAMPLE -->
+            <!-- GSAP EXAMPLE -->
             <div ref="boxRef" class="box tw:h-16 tw:w-16 tw:bg-primary tw:mt-40"/>
         </div>
 

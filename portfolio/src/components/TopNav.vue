@@ -35,12 +35,10 @@
           <ThemeToggle />
   
           <v-btn
-            icon
             variant="text"
+            icon="mdi-menu"
             @click="isOpen = true"
-          >
-            <v-icon>mdi-menu</v-icon>
-          </v-btn>
+          />
         </div>
       </div>
   

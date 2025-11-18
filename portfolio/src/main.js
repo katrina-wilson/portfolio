@@ -15,9 +15,9 @@ import '@fontsource/google-sans-code';
 // GSAP 
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { GSDevTools } from "gsap/GSDevTools";
-gsap.registerPlugin(ScrollTrigger, GSDevTools);
-GSDevTools.create();
+// import { GSDevTools } from "gsap/GSDevTools";
+// gsap.registerPlugin(ScrollTrigger, GSDevTools);
+// GSDevTools.create();
 
 import App from './App.vue';
 import router from './router';

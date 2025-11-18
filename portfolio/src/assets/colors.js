@@ -1,6 +1,20 @@
 export const light = {
     background: '#FFF6DF',
 
+    
+    vue: '#3fb27f',
+    fastApi: '#009688',
+    tailwind: '#38bdf8',
+    mobileDevelopment: '#ff6f61',
+    huggingFace: '#f7b32b',
+    python: '#3776ab',
+    nlp: '#ff6f61',
+    api: '#009688',
+    d3: '#f9a03c',
+    gsap: '#88ce02',
+
+
+
 
     foreground: '#2a303b',
   

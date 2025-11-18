@@ -20,7 +20,6 @@
                     ref="projectCardRef"
                     :project="project" 
                 />
-                
             </div>
         </div>
       </div>
