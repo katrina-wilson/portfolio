@@ -27,7 +27,7 @@
 </template>
   
 <script setup>
-import { ref, onMounted } from "vue";
+import { ref, onMounted, nextTick } from "vue";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; 
 import { projects } from "@/seed";
@@ -38,25 +38,31 @@ gsap.registerPlugin(ScrollTrigger);
 const sectionRef = ref(null);
 const projectCardRef = ref(null);
 
-onMounted(() => {   
+onMounted(async () => {
+  await nextTick();
 
-    if (projectCardRef.value == null) return;
+  if (!sectionRef.value) return;
 
-    // const ctx = gsap.context(() => {
-    //   gsap.from(".project-card", {
-    //     y: 60,
-    //     opacity: 0,
-    //     duration: 0.8,
-    //     stagger: 0.15,
-    //     ease: "power3.out",
-    //     scrollTrigger: {
-    //       trigger: sectionRef.value.current,
-    //       start: "top center",
-    //     },
-    //   });
-    // }, sectionRef);
+  const cards = sectionRef.value.querySelectorAll(".project-card");
 
-    // return () => ctx.revert();
+
+  cards.forEach((card) => {
+
+    console.log(card);
+      gsap.from(card, {
+          y: 60,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+              trigger: card,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
+              scroller: "#homeScroll"
+          },
+      });
+  });
+
 });
 </script>
-  

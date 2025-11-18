@@ -33,9 +33,9 @@
               </p>
             </div>
 
-            <div className="tw:p-8 tw:rounded-2xl tw:bg-gradient-to-br tw:from-sage/10 tw:to-primary/5 tw:border tw:border-border">
-              <div className="tw:flex tw:items-center tw:gap-3 tw:mb-4">
-                <div className="tw:p-3 tw:rounded-full tw:bg-sage/20">
+            <div class="tw:p-8 tw:rounded-2xl tw:bg-gradient-to-br tw:from-sage/10 tw:to-primary/5 tw:border tw:border-border">
+              <div class="tw:flex tw:items-center tw:gap-3 tw:mb-4">
+                <div class="tw:p-3 tw:rounded-full tw:bg-sage/20">
                   <Code2 className="tw:text-sage" size={24} />
                 </div>
                 <h3 className="tw:text-2xl tw:font-semibold tw:text-foreground">Technical Side</h3>

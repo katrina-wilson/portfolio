@@ -15,18 +15,21 @@
         <div ref="chartRef" class="tw:h-[400px] tw:w-[400px]" />
 
         <div>
-          <v-card v-if="currentSkill" class="tw:max-w-md tw:mx-auto tw:mt-10">
-            <v-card-title>{{ currentSkill.name }}</v-card-title>
-            <v-card-text>
-              <div>
-                <p>{{ currentSkill.value }}%</p>
-                <p>{{ currentSkill.description }}</p>
-              </div>
-            </v-card-text>
-          </v-card>
-          <div v-else>
-            <p class="tw:italic tw:mt-10">Select a skill slice to see details.</p>
-          </div>
+            <v-card 
+                v-if="currentSkill" 
+                class="tw:max-w-md tw:mx-auto tw:mt-10"
+            >
+                <v-card-title>{{ currentSkill.name }}</v-card-title>
+                <v-card-text>
+                    <div>
+                    <p>{{ currentSkill.value }}%</p>
+                    <p>{{ currentSkill.description }}</p>
+                    </div>
+                </v-card-text>
+            </v-card>
+            <div v-else>
+                <p class="tw:italic tw:mt-10">Select a skill slice to see details.</p>
+            </div>
         </div>
       </div>
     </div>

@@ -13,7 +13,7 @@
     <Projects/>
     <About/>
     <Contact/>
-    
+
   </div>
 </template>
   
@@ -27,16 +27,16 @@ import Contact from "@/components/Sections/Contact.vue";
 
 const mousePosition = ref({ x: 0, y: 0 });
 
+const handleMouseMove = (e) => {
+  mousePosition.value = { x: e.clientX, y: e.clientY };
+};
+
 onMounted(() => {
-  const handleMouseMove = (e) => {
-      mousePosition.value = { x: e.clientX, y: e.clientY };
-  };
-
   window.addEventListener("mousemove", handleMouseMove);
+});
 
-  onUnmounted(() => {
-      window.removeEventListener("mousemove", handleMouseMove);
-  });
+onUnmounted(() => {
+  window.removeEventListener("mousemove", handleMouseMove);
 });
 </script>
   
