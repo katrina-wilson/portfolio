@@ -4,12 +4,11 @@
       class="mx-auto pa-0 tw:border tw:border-muted-foreground/30"
       max-width="600"
       min-height="235"
-      max-height="235"
       rounded="xl"
       outlined
       elevation="0"
     >
-      <div class="tw:flex tw:flex-col tw:h-full tw:p-2" style="min-height: inherit !important;">
+      <!-- <div class="tw:flex tw:flex-col tw:h-full tw:p-2" style="min-height: inherit !important;"> -->
         <v-card-title class="tw-pb-2">
           {{ props.project.title }}
         </v-card-title>
@@ -67,7 +66,7 @@
           </div>
         </v-card-actions>
 
-      </div>
+      <!-- </div> -->
     </v-card>
   </div>
 </template>

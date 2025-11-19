@@ -9,7 +9,6 @@
       :width="width"
       :height="height"
       class="tw:absolute tw:top-0 tw:left-0"
-      :style="{ opacity: leftOpacity }"
     >
       <defs>
         <clipPath id="leftClip">
@@ -30,7 +29,6 @@
       :width="width"
       :height="height"
       class="tw:absolute tw:top-0 tw:left-0"
-      :style="{ opacity: rightOpacity }"
     >
       <defs>
         <clipPath id="rightClip">
@@ -67,15 +65,16 @@ const height = 400;
 // Divider position
 const dividerX = ref(width / 2);
 
-// Opacity computation (soft fade)
+// Opacity computation
+const minPeek = 0.2; // baseline opacity for hidden SVG
 const leftOpacity = computed(() => {
   const percent = dividerX.value / width;
-  return 0.2 + percent * 0.8; // 20% → 100%
+  return minPeek + percent * (1 - minPeek); // left is mostly visible
 });
 
 const rightOpacity = computed(() => {
   const percent = 1 - dividerX.value / width;
-  return 0.2 + percent * 0.8; // 20% → 100%
+  return minPeek + percent * (1 - minPeek); // right is mostly visible
 });
 
 onMounted(() => {
@@ -100,3 +99,4 @@ onMounted(() => {
   });
 });
 </script>
+
