@@ -5,7 +5,7 @@
       class="tw:min-h-screen tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
     >
       <div class="tw:mx-auto tw:px-6 tw:text-center tw:z-10">
-          <div class="tw:w-full tw:text-6xl tw:md:text-8xl tw:font-bold tw:text-foreground tw:mb-6 tw:tracking-tight">
+          <div class="tw:w-full tw:text-6xl tw:md:text-8xl tw:font-bold tw:text-foreground tw:mb-6 tw:leading-18">
               Hey, I'm Katrina!
           </div>
 
@@ -13,7 +13,7 @@
               <span class="tw:text-muted-foreground">
                   I am a
               </span>
-              <span class="tw:font-medium tw:min-w-[280px] tw:text-foreground code-font">
+              <span class="tw:font-medium tw:min-w-fit tw:text-foreground code-font">
                   {{ displayRole }}
                   <span class="tw:animate-pulse">|</span>
               </span>

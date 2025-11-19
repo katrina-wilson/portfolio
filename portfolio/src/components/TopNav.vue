@@ -1,15 +1,22 @@
 <template>
     <div class="tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
+
+      <Navigation
+        :navItems="navItems"
+        :activeSection="activeSection"
+        :isOpen="isOpen"
+        @mobileDrawerToggle="(v) => isOpen = v"
+        @selectMobile="(v) => selectMobile(v)"
+      />
+
       <div class="tw:mx-auto tw:px-6 tw:py-4 tw:flex tw:items-center tw:justify-between">
-        
-        <button
+        <img 
+          :src="isDark ? colorfulLogo : logo" 
+          alt="Logo" 
+          class="h-6 w-6" 
           @click="scrollToSection('home')"
-          class="tw:text-xl tw:font-semibold"
-        >
-          K
-        </button>
-  
-        <!-- Desktop Navigation -->
+        />
+
         <div class="tw:hidden tw:md:flex tw:items-center tw:gap-8">
           <v-tabs
             v-model="activeSection"
@@ -41,32 +48,19 @@
           />
         </div>
       </div>
-  
-      <!-- Mobile Drawer -->
-      <v-navigation-drawer
-        v-model="isOpen"
-        temporary
-        location="right"
-      >
-        <div class="tw:p-4 tw:space-y-2">
-          <v-btn
-            v-for="item in navItems"
-            :key="item.id"
-            variant="text"
-            class="w-full justify-start"
-            :color="activeSection === item.id ? 'primary' : undefined"
-            @click="selectMobile(item.id)"
-          >
-            {{ item.label }}
-          </v-btn>
-        </div>
-      </v-navigation-drawer>
+
     </div>
 </template>
   
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed } from "vue";
+import { useTheme } from "vuetify";
 import ThemeToggle from "@/components/ThemeToggle.vue";
+import Navigation from "@/components/Mobile/Navigation.vue";
+import logo from '@/assets/logo.svg';
+import colorfulLogo from '@/assets/colorful-logo.svg';
+
+const theme = useTheme();
 
 const isOpen = ref(false);
 const activeSection = ref("home");
@@ -79,37 +73,35 @@ const navItems = [
     { id: "contact", label: "Contact" },
 ];
 
+const isDark = computed(() => theme.global.current.value.dark);
 
-// Smooth scroll to section
 const scrollToSection = (id) => {
     const el = document.getElementById(id);
     if (!el) return;
     el.scrollIntoView({ behavior: "smooth" });
 };
 
-
-// Click from mobile closes drawer
 const selectMobile = (id) => {
     scrollToSection(id);
     isOpen.value = false;
 };
 
+const handleScroll = () => {
+  const scrollY = window.scrollY + 100;
 
-// Scroll spy
+  for (let i = navItems.length - 1; i >= 0; i--) {
+      const section = document.getElementById(navItems[i].id);
+      if (section && section.offsetTop <= scrollY) {
+          activeSection.value = navItems[i].id;
+          break;
+      }
+  }
+};
+
 onMounted(() => {
-    const handleScroll = () => {
-        const scrollY = window.scrollY + 100;
-
-        for (let i = navItems.length - 1; i >= 0; i--) {
-            const section = document.getElementById(navItems[i].id);
-            if (section && section.offsetTop <= scrollY) {
-                activeSection.value = navItems[i].id;
-                break;
-            }
-        }
-    };
-    window.addEventListener("scroll", handleScroll);
-    onUnmounted(() => window.removeEventListener("scroll", handleScroll));
+  window.addEventListener("scroll", handleScroll);
 });
+
+onUnmounted(() => window.removeEventListener("scroll", handleScroll));
 </script>
   

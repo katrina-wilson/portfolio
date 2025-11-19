@@ -68,7 +68,7 @@ export const light = {
 };
   
 export const dark = {
-    background: '#fafafa',
+    background: '#1D201F',
     foreground: '#2a303b',
   
     card: '#ffffff',

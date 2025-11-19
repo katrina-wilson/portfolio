@@ -18,7 +18,8 @@
             </p>
           </div>
 
-          <div className="tw:grid tw:md:grid-cols-2 tw:gap-8 tw:mt-16">
+          <Brain/>
+          <!-- <div className="tw:grid tw:md:grid-cols-2 tw:gap-8 tw:mt-16">
             <div className="tw:p-8 tw:rounded-2xl tw:bg-gradient-to-br tw:from-lavender/10 tw:to-beige/10 tw:border tw:border-border">
               <div className="tw:flex tw:items-center tw:gap-3 tw:mb-4">
                 <div className="tw:p-3 tw:rounded-full tw:bg-lavender/20">
@@ -46,7 +47,7 @@
                 at the forefront. Backend and data skills round out my toolkit.
               </p>
             </div>
-          </div>
+          </div> -->
 
           <div className="tw:text-center tw:pt-8">
             <p className="tw:text-lg tw:text-muted-foreground tw:leading-relaxed">
@@ -62,6 +63,7 @@
   
 <script setup>
 import { onMounted } from "vue";
+import Brain from "@/components/Brain.vue";
 
 onMounted(() => {
 });

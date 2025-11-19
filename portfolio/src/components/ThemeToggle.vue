@@ -16,6 +16,6 @@ const theme = useTheme();
 const isDark = ref(theme.global.current.dark);
 
 const toggleTheme = () => {
-  theme.global.name.dark = !theme.global.name.dark;
+    theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
 };
 </script>

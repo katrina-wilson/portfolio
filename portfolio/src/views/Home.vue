@@ -2,7 +2,7 @@
   <div id="homeScroll" class="tw:w-full tw:h-full tw:overflow-y-auto">
 
     <div
-      class="tw:pointer-events-none tw:fixed tw:inset-0 tw:z-50 tw:transition-opacity tw:duration-300"
+      class="tw:pointer-events-none tw:fixed tw:inset-0 tw:z-50 tw:transition-opacity tw:duration-300 tw:hidden tw:md:block"
       :style="{
         background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255,0,0,0.08), transparent 40%)`
       }"
