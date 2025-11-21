@@ -13,8 +13,10 @@
         {{ props.project.title }}
       </v-card-title>
       <v-card-text class="tw:pb-2 tw:flex-1 tw:flex tw:flex-col">
-        <div class="tw:pb-3 tw:text-gray-500 tw:flex-1">
-          <p class="tw:h-full tw:flex tw:items-center">{{ props.project.description }}</p>
+        <div class="tw:pb-3 tw:text-muted-foreground tw:flex-1">
+          <p class="tw:h-full tw:flex tw:items-center">
+            {{ props.project.description }}
+          </p>
         </div>
         <div class="tw:flex tw:gap-2 tw:flex-wrap">
           <v-chip
@@ -24,7 +26,7 @@
             outlined
             small
             label
-            :color="toCamelCase(tag)"
+            color="tag-color"
             :text="tag"
           />
         </div>

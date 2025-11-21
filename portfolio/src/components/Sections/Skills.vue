@@ -1,8 +1,7 @@
 <template>
     <section
       id="skills"
-      ref="introRef"
-      class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
+      class="tw:min-h-screen tw:max-h-fit tw:pt-18 tw:mb-50 tw:flex tw:flex-col tw:items-center"
     >
         <div class="tw:h-full tw:flex tw:flex-col tw:w-full tw:px-6">
             <h2
@@ -26,7 +25,7 @@
                             :skill="currentSkill"
                         />
                         <div v-else>
-                            <p class="tw:italic tw:mt-10 tw:text-muted-foreground">
+                            <p class="tw:italic tw:mt-10 tw:text-muted-foreground tw:text-lg">
                                 Select a skill slice to see details.
                             </p>
                         </div>
@@ -39,20 +38,27 @@
 </template>
   
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, computed, watch } from "vue";
+import { useTheme } from "vuetify";
 import { skills } from "@/seed";
+import { lightPieColors, darkPieColors } from "@/assets/colors";
 import * as d3 from "d3";
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import SkillCard from "@/components/SkillCard.vue";
 
 gsap.registerPlugin(ScrollTrigger);
+const theme = useTheme();
 
 const chartRef = ref(null);
 const currentSkill = ref(null);
+const isAnimating = ref(true);
+const color = ref(null);
 
 let svg, slicesG, legendG, arcGen, hoverArcGen, pieGen;
 let sliceGroups;
+
+const isDark = computed(() => theme.global.current.value.dark);
 
 const getChartSize = () => {
     const w = Math.min(window.innerWidth * 0.6, 400);
@@ -75,13 +81,9 @@ const addLegend = () => {
   const rectSize = 20;
   const spacing = 7;
   const legendItemHeight = rectSize + spacing;
-
   const totalLegendHeight = skills.length * legendItemHeight;
   const isSmallScreen = w < 400 || totalLegendHeight > h / 2;
 
-  // -----------------------------
-  // D3 legend inside circle
-  // -----------------------------
   legendG.selectAll("*").remove();
   if (!isSmallScreen) {
     legendHtmlRef.value.classList.add("tw:hidden");
@@ -100,25 +102,21 @@ const addLegend = () => {
         .attr("height", rectSize)
         .attr("rx", 20)
         .attr("ry", 20)
-        .style("fill", d.color);
+        .style("fill", color.value(i));
 
       g.append("text")
         .attr("x", 30)
         .attr("y", 15)
-        .style("fill", d.color)
+        .style("fill", color.value(i))
         .style("font-size", "14px")
         .text(d.name);
     });
-  } 
-  // -----------------------------
-  // HTML legend below chart
-  // -----------------------------
-  else {
+  } else {
     legendHtmlRef.value.classList.remove("tw:hidden");
     legendHtmlRef.value.classList.add("tw:flex");
 
-    legendHtmlRef.value.innerHTML = ""; // clear previous
-    skills.forEach(skill => {
+    legendHtmlRef.value.innerHTML = "";
+    skills.forEach((skill, i) => {
       const item = document.createElement("div");
       item.className = "tw:flex tw:items-center tw:gap-2";
 
@@ -126,11 +124,11 @@ const addLegend = () => {
       colorBox.style.width = "20px";
       colorBox.style.height = "20px";
       colorBox.style.borderRadius = "20px";
-      colorBox.style.backgroundColor = skill.color;
+      colorBox.style.backgroundColor = color.value(i);
 
       const text = document.createElement("span");
       text.textContent = skill.name;
-      text.style.color = skill.color;
+      text.style.color = color.value(i);
       text.style.fontSize = "14px";
 
       item.appendChild(colorBox);
@@ -140,35 +138,6 @@ const addLegend = () => {
     });
   }
 };
-//     legendG.selectAll("*").remove();
-//     const rectSize = 20;
-//     const spacing = 7;
-//     const legendHeight = rectSize + spacing;
-
-//     const legend = legendG
-//         .selectAll(".legend-item")
-//         .data(skills)
-//         .enter()
-//         .append("g")
-//         .attr("class", "legend-item")
-//         .attr("transform", (d, i) => `translate(-80, ${i * legendHeight - 55})`);
-
-//     legend
-//         .append("rect")
-//         .attr("width", rectSize)
-//         .attr("height", rectSize)
-//         .attr("rx", 20)
-//         .attr("ry", 20)
-//         .style("fill", d => d.color);
-
-//     legend
-//         .append("text")
-//         .attr("x", 30)
-//         .attr("y", 15)
-//         .style("fill", d => d.color)
-//         .style("font-size", "14px")
-//         .text(d => d.name);
-// };
 
 const buildChart = () => {
     const { w, h, outerRadius, innerRadius } = getChartSize();
@@ -211,70 +180,64 @@ const buildChart = () => {
         .enter()
         .append("g")
         .attr("class", "slice-group")
-        .style("cursor", "pointer")
+        .style("cursor", () => (isAnimating.value ? 'default' : 'pointer'))
         .on("mouseenter", function (event, d) {
-        sliceGroups.each(function (dd) {
-            const path = d3.select(this).select("path");
-            if (dd === d) {
-            path.transition()
-                .duration(300)
-                .attr("d", hoverArcGen(dd))
-                .attr("fill", d3.color(dd.data.color).brighter(0.5).formatHex());
-            } else if (currentSkill.value?.name !== dd.data.name) {
-            path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", dd.data.color);
-            }
-        });
+            if (isAnimating.value) return;
+            sliceGroups.each(function (dd) {
+                const path = d3.select(this).select("path");
+                if (dd === d) {
+                    path.transition()
+                        .duration(300)
+                        .attr("d", hoverArcGen(dd))
+                        .attr("fill", d3.color(color.value(dd.index)).brighter(0.5).formatHex());
+                } else if (currentSkill.value?.name !== dd.data.name) {
+                    path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", color.value(dd.index));
+                }
+            });
         })
         .on("mouseleave", function () {
-        sliceGroups.each(function (dd) {
-            const path = d3.select(this).select("path");
-            if (currentSkill.value?.name === dd.data.name) {
-            path.transition()
-                .duration(300)
-                .attr("d", hoverArcGen(dd))
-                .attr("fill", d3.color(dd.data.color).brighter(0.5).formatHex());
-            } else {
-            path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", dd.data.color);
-            }
-        });
+            if (isAnimating.value) return;
+            sliceGroups.each(function (dd) {
+                const path = d3.select(this).select("path");
+                if (currentSkill.value?.name === dd.data.name) {
+                path.transition()
+                    .duration(300)
+                    .attr("d", hoverArcGen(dd))
+                    .attr("fill", d3.color(color.value(dd.index)).brighter(0.5).formatHex());
+                } else {
+                    path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", color.value(dd.index));
+                }
+            });
         })
         .on("click", (event, d) => {
-        currentSkill.value =
-            currentSkill.value?.name === d.data.name ? null : d.data;
+            if (isAnimating.value) return;
 
-        sliceGroups.each(function (dd) {
-            const path = d3.select(this).select("path");
-            if (currentSkill.value?.name === dd.data.name) {
-            path.transition()
-                .duration(300)
-                .attr("d", hoverArcGen(dd))
-                .attr("fill", d3.color(dd.data.color).brighter(0.5).formatHex());
-            } else {
-            path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", dd.data.color);
-            }
-        });
+            currentSkill.value =
+                currentSkill.value?.name === d.data.name ? null : d.data;
+
+            sliceGroups.each(function (dd) {
+                const path = d3.select(this).select("path");
+                if (currentSkill.value?.name === dd.data.name) {
+                path.transition()
+                    .duration(300)
+                    .attr("d", hoverArcGen(dd))
+                    .attr("fill", d3.color(color.value(dd.index)).brighter(0.5).formatHex());
+                } else {
+                path.transition().duration(300).attr("d", arcGen(dd)).attr("fill", color.value(dd.index));
+                }
+            });
         });
 
     sliceGroups
         .append("path")
-        .attr("fill", d => d.data.color)
+        .attr("fill", d => color.value(d.index))
         .attr("d", d => arcGen(d.current));
-
-    // sliceGroups
-    //     .append("text")
-    //     .attr("text-anchor", "middle")
-    //     .attr("dy", ".35em")
-    //     .style("fill", "#fff")
-    //     .style("font-size", "16px")
-    //     .style("pointer-events", "auto")
-    //     .text(d => `${d.data.value}%`)
-    //     .attr("transform", d => `translate(${arcGen.centroid(d.current)})`);
 
     sliceGroups
         .append("text")
         .attr("text-anchor", "middle")
         .attr("dy", ".35em")
-        .style("fill", "#fff")
+        .style("fill", () => isDark.value ? '#000' : '#fff')
         .style("font-size", d => `${getFontSize(innerRadius, outerRadius)}px`)
         .style("pointer-events", "auto")
         .text(d => `${d.data.value}%`)
@@ -282,33 +245,35 @@ const buildChart = () => {
 
 
     const progress = { t: 0 };
-    const animateChart = tValue => {
+    const animateChart = (tValue) => {
+        isAnimating.value = true;
         gsap.to(progress, {
-        t: tValue,
-        ease: "power2.out",
-        duration: tValue ? 1.2 : 0.8,
-        onUpdate: () => {
-            sliceGroups.each(function (d) {
-            const interp = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
-            d.current = interp(progress.t);
-            const path = d3.select(this).select("path");
-            const text = d3.select(this).select("text");
+            t: tValue,
+            ease: "power2.out",
+            duration: tValue ? 1.2 : 0.8,
+            onUpdate: () => {
+                sliceGroups.each(function (d) {
+                    const interp = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+                    d.current = interp(progress.t);
+                    const path = d3.select(this).select("path");
+                    const text = d3.select(this).select("text");
 
-            if (currentSkill.value?.name === d.data.name) {
-                path.attr("d", hoverArcGen(d.current))
-                .attr("fill", d3.color(d.data.color).brighter(0.5).formatHex());
-            } else {
-                path.attr("d", arcGen(d.current)).attr("fill", d.data.color);
-            }
+                    if (currentSkill.value?.name === d.data.name) {
+                        path.attr("d", hoverArcGen(d.current))
+                        .attr("fill", d3.color(color.value(d.index)).brighter(0.5).formatHex());
+                    } else {
+                        path.attr("d", arcGen(d.current)).attr("fill", color.value(d.index));
+                    }
 
-            text.attr("transform", `translate(${arcGen.centroid(d.current)})`)
-                .style("font-size", `${getFontSize(innerRadius, outerRadius)}px`);
-
-            // text.attr("transform", `translate(${arcGen.centroid(d.current)})`);
-            });
-
-        },
-        onComplete: () => addLegend(),
+                    text.attr("transform", `translate(${arcGen.centroid(d.current)})`)
+                        .style("font-size", `${getFontSize(innerRadius, outerRadius)}px`);
+                });
+            },
+            onComplete: () => {
+                addLegend();
+                isAnimating.value = false;
+                sliceGroups.style("cursor", "pointer");
+            },
         });
     };
 
@@ -325,7 +290,22 @@ const buildChart = () => {
     });
 };
 
+watch(() => isDark.value, () => {
+    if (isDark.value) {
+        color.value = d3.scaleOrdinal(darkPieColors);
+    } else {
+        color.value = d3.scaleOrdinal(lightPieColors);
+    }
+    buildChart();
+});
+
 onMounted(() => {
+    if (isDark.value) {
+        color.value = d3.scaleOrdinal(darkPieColors);
+    } else {
+        color.value = d3.scaleOrdinal(lightPieColors);
+    }
+
     buildChart();
     window.addEventListener("resize", buildChart);
 });

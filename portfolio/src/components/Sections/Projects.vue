@@ -2,7 +2,7 @@
   <section
     id="projects"
     ref="sectionRef"
-    class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
+    class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:pt-18 tw:flex tw:flex-col tw:items-center"
   >
     <div class="tw:mx-auto tw:px-6">
         <h2 class="tw:text-5xl tw:md:text-6xl tw:font-bold tw:text-center tw:mb-20 tw:text-foreground">

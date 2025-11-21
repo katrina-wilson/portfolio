@@ -4,6 +4,8 @@
     --color-primary: rgb(var(--v-theme-primary));
     --color-primary-foreground: rgb(var(--v-theme-primary-foreground));
 
+    --color-tag-color: rgb(var(--v-theme-tag-color));
+
     --color-muted-foreground: rgb(var(--v-theme-muted-foreground));
 
     --color-toggle-bg-light: rgb(var(--v-theme-toggle-bg-light));
@@ -23,18 +25,6 @@
     --color-sidebar-accent-foreground: rgb(var(--v-theme-sidebar-accent-foreground));
     --color-sidebar-border: rgb(var(--v-theme-sidebar-border));
     --color-sidebar-ring: rgb(var(--v-theme-sidebar-ring));
-
-
-    --color-vue: rgb(var(--v-theme-vue));
-    --color-fastApi: rgb(var(--v-theme-fastApi));
-    --color-tailwind: rgb(var(--v-theme-tailwind));
-    --color-mobileDevelopment: rgb(var(--v-theme-mobileDevelopment));
-    --color-huggingFace: rgb(var(--v-theme-huggingFace));
-    --color-python: rgb(var(--v-theme-python));
-    --color-nlp: rgb(var(--v-theme-nlp));
-    --color-api: rgb(var(--v-theme-api));
-    --color-d3: rgb(var(--v-theme-d3));
-    --color-gsap: rgb(var(--v-theme-gsap));
 }
 
 #app {

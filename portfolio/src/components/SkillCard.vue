@@ -43,7 +43,7 @@
                     outlined
                     small
                     label
-                    :color="toCamelCase(tag)"
+                    color="tag-color"
                     :text="tag"
                 />
             </div>
@@ -54,7 +54,6 @@
 
 <script setup>
 import { defineProps } from "vue";
-import { toCamelCase } from "@/utils/formatText";
 
 const props = defineProps({
     skill: {

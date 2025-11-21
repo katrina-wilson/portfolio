@@ -12,7 +12,7 @@ export const skills = [
     { 
         name: "Front End Development", 
         value: 62, 
-        color: "#5DB7DE",
+        color: "#3F98B1",
         tags: ["Vue", "React", "Tailwind", "GSAP", "D3.js", "Typescript", "JavaScript", "Data Visualization", "Vuex", "Pinia", "Redux", "Tauri"], 
         level: 'Expert',
     },
@@ -80,5 +80,22 @@ export const projects = [
         link: null,
         gitlab: null,
     },
+];
 
+export const socialLinks = [
+    { 
+        label: "Email", 
+        icon: 'mdi-email',
+        href: "mailto:katrina@example.com" 
+    },
+    { 
+        label: "LinkedIn", 
+        icon: 'mdi-linkedin',
+        href: "https://linkedin.com" 
+    },
+    { 
+        label: "GitHub", 
+        icon: 'mdi-github',
+        href: "https://github.com" 
+    }
 ];

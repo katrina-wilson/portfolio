@@ -22,10 +22,10 @@
              tw:pointer-events-none"
       :style="{ opacity: leftTextOpacity }"
     >
-      <span class="tw:font-extrabold tw:text-base tw:sm:text-lg tw:md:text-2xl code-font">
+      <span class="tw:font-extrabold tw:text-base tw:sm:text-lg tw:md:text-3xl code-font">
         &lt;Developer/&gt;
       </span>
-      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-2">
+      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-3">
         I build clean, efficient, and scalable front-end and full-stack applications.
       </span>
     </div>
@@ -38,11 +38,11 @@
              tw:pointer-events-none"
       :style="{ opacity: rightTextOpacity }"
     >
-      <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-2xl designer-font"
+      <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-3xl designer-font"
             style="font-family: 'Limelight';">
         Designer
       </span>
-      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-2">
+      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-3">
         I create intuitive and engaging designs focusing on UI, UX, and accessibility.
       </span>
     </div>

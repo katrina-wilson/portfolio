@@ -1,5 +1,5 @@
 <template>
-  <div class="tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
+  <div class="top-nav tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
 
     <!-- Navigation Component (Mobile) -->
     <Navigation
@@ -19,7 +19,7 @@
       />
 
       <!-- Desktop Nav -->
-      <div class="tw:hidden tw:md:flex tw:items-center tw:gap-8">
+      <div class="tw:hidden tw:md:flex tw:items-center">
         <v-tabs
           v-model="activeSection"
           bg-color="transparent"
@@ -54,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from "vue";
+import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 import { useTheme } from "vuetify";
 import Navigation from "@/components/Mobile/Navigation.vue";
 import ThemeToggle from "@/components/ThemeToggle.vue";
@@ -92,8 +92,12 @@ const scrollToSection = (id) => {
   const el = document.getElementById(id);
   if (!el) return;
 
-  window.scrollTo({
-    top: el.offsetTop,
+  const scrollContainer = document.querySelector("#homeScroll") || window;
+  const navHeight = document.querySelector('.top-nav')?.offsetHeight || 0;
+  const targetY = el.offsetTop - navHeight;
+
+  scrollContainer.scrollTo({
+    top: targetY < 0 ? 0 : targetY,
     behavior: "smooth"
   });
 };

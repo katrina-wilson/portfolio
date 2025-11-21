@@ -1,19 +1,6 @@
 export const light = {
     background: '#FFF6DF',
-
-    
-    vue: '#3fb27f',
-    fastApi: '#009688',
-    tailwind: '#38bdf8',
-    mobileDevelopment: '#ff6f61',
-    huggingFace: '#f7b32b',
-    python: '#3776ab',
-    nlp: '#ff6f61',
-    api: '#009688',
-    d3: '#f9a03c',
-    gsap: '#88ce02',
-
-
+    'tag-color': '#003631',
 
 
     foreground: '#2a303b',
@@ -31,7 +18,7 @@ export const light = {
     'secondary-foreground': '#2a303b',
   
     muted: '#eef7f3',
-    'muted-foreground': '#676f7e',
+    'muted-foreground': '#646464',
   
     accent: '#c2b3e8',
     'accent-foreground': '#fafafa',
@@ -70,21 +57,27 @@ export const light = {
 export const dark = {
     background: '#1D201F',
     foreground: '#2a303b',
-  
+    primary: '#C05746',
+    'muted-foreground': '#B7B7B7',
+    'tag-color': '#A8FFF6',
+
+
+
+
     card: '#ffffff',
     'card-foreground': '#2a303b',
   
     popover: '#ffffff',
     'popover-foreground': '#2a303b',
   
-    primary: '#6faf98',
+
     'primary-foreground': '#fafafa',
   
     secondary: '#f1ddbf',
     'secondary-foreground': '#2a303b',
   
     muted: '#eef7f3',
-    'muted-foreground': '#5a6473',
+
   
     accent: '#c2b3e8',
     'accent-foreground': '#fafafa',
@@ -119,4 +112,18 @@ export const dark = {
     'sidebar-border': '#e5e8ef',
     'sidebar-ring': '#4da6ff',
 };
+
+export const lightPieColors = [
+    '#249689',
+    '#1A7C71',
+    '#085B52',
+    '#003631',
+];
+
+export const darkPieColors = [
+    '#A8FFF6',
+    '#6FF8E9',
+    '#3FC8B9',
+    '#1E9B8E',
+];
   
