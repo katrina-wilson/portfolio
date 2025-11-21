@@ -1,102 +1,118 @@
 <template>
   <div
     ref="container"
-    class="tw:relative tw:w-full tw:h-[400px] tw:overflow-hidden tw:cursor-pointer tw:flex tw:items-center tw:justify-center"
+    class="tw:relative tw:w-full tw:max-w-[800px] tw:mx-auto tw:my-12 tw:cursor-pointer tw:flex tw:items-center tw:justify-center tw:aspect-[2/1]"
   >
-    <!-- Left SVG (Logic Brain) -->
-    <svg
-      ref="leftSvg"
-      :width="width"
-      :height="height"
-      class="tw:absolute tw:top-0 tw:left-0"
-    >
-      <defs>
-        <clipPath id="leftClip">
-          <rect :x="0" :y="0" :width="dividerX" :height="height" />
-        </clipPath>
-      </defs>
-      <image
-        xlink:href="@/assets/logic-brain.svg"
-        width="100%"
-        height="100%"
-        :clip-path="'url(#leftClip)'"
-      />
-    </svg>
+    <img
+      src="@/assets/logic-brain.svg"
+      class="tw:absolute tw:top-0 tw:left-0 tw:w-full tw:h-full tw:object-contain"
+      :style="{ clipPath: `inset(0 ${containerWidth - dividerX}px 0 0)` }"
+    />
+    <img
+      src="@/assets/creative-brain.svg"
+      class="tw:absolute tw:top-0 tw:left-0 tw:w-full tw:h-full tw:object-contain"
+      :style="{ clipPath: `inset(0 0 0 ${dividerX}px)` }"
+    />
 
-    <!-- Right SVG (Creative Brain) -->
-    <svg
-      ref="rightSvg"
-      :width="width"
-      :height="height"
-      class="tw:absolute tw:top-0 tw:left-0"
-    >
-      <defs>
-        <clipPath id="rightClip">
-          <rect :x="dividerX" :y="0" :width="width - dividerX" :height="height" />
-        </clipPath>
-      </defs>
-      <image
-        xlink:href="@/assets/creative-brain.svg"
-        width="100%"
-        height="100%"
-        :clip-path="'url(#rightClip)'"
-      />
-    </svg>
-
-    <!-- Vertical divider -->
     <div
-      ref="divider"
-      class="tw:absolute tw:top-0 tw:w-[2px] tw:bg-white tw:h-full tw:pointer-events-none"
+      class="tw:absolute tw:left-0 tw:top-1/2 tw:-translate-y-1/2 
+             tw:px-2 tw:text-foreground tw:text-lg tw:md:text-2xl 
+             tw:flex tw:flex-col tw:items-center tw:text-center
+             tw:max-w-[32%] md:tw:max-w-[30%] 
+             tw:pointer-events-none"
+      :style="{ opacity: leftTextOpacity }"
+    >
+      <span class="tw:font-extrabold tw:text-base tw:sm:text-lg tw:md:text-2xl code-font">
+        &lt;Developer/&gt;
+      </span>
+      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-2">
+        I build clean, efficient, and scalable front-end and full-stack applications.
+      </span>
+    </div>
+
+    <div
+      class="tw:absolute tw:right-0 tw:top-1/2 tw:-translate-y-1/2 
+             tw:px-2 tw:text-foreground tw:text-lg tw:md:text-2xl
+             tw:flex tw:flex-col tw:items-center tw:text-center
+             tw:max-w-[32%] md:tw:max-w-[30%]
+             tw:pointer-events-none"
+      :style="{ opacity: rightTextOpacity }"
+    >
+      <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-2xl designer-font"
+            style="font-family: 'Limelight';">
+        Designer
+      </span>
+      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-2">
+        I create intuitive and engaging designs focusing on UI, UX, and accessibility.
+      </span>
+    </div>
+
+    <div
+      v-if="!isMobile"
+      class="tw:absolute tw:top-0 tw:h-full tw:w-[2px] tw:bg-black tw:pointer-events-none"
       :style="{ left: dividerX + 'px' }"
-    ></div>
+    />
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from "vue";
+import { ref, computed, onMounted, nextTick } from "vue";
 import gsap from "gsap";
 
 const container = ref(null);
+const containerWidth = ref(800);
+const dividerX = ref(0);
+const isMobile = ref(window.innerWidth < 768);
 
-// SVG dimensions
-const width = 800;
-const height = 400;
+const minOpacity = 0.2;
 
-// Divider position
-const dividerX = ref(width / 2);
-
-// Opacity computation
-const minPeek = 0.2; // baseline opacity for hidden SVG
-const leftOpacity = computed(() => {
-  const percent = dividerX.value / width;
-  return minPeek + percent * (1 - minPeek); // left is mostly visible
+const leftTextOpacity = computed(() => {
+  const center = containerWidth.value / 2;
+  if (dividerX.value >= center) return 1;
+  const dist = center - dividerX.value;
+  return Math.max(minOpacity, 1 - dist / center);
 });
 
-const rightOpacity = computed(() => {
-  const percent = 1 - dividerX.value / width;
-  return minPeek + percent * (1 - minPeek); // right is mostly visible
+const rightTextOpacity = computed(() => {
+  const center = containerWidth.value / 2;
+  if (dividerX.value <= center) return 1;
+  const dist = dividerX.value - center;
+  return Math.max(minOpacity, 1 - dist / center);
 });
 
 onMounted(() => {
-  let targetX = width / 2;
+  nextTick(() => {
+    containerWidth.value = container.value.clientWidth;
+    dividerX.value = containerWidth.value / 2;
+  });
+
+  let targetX = containerWidth.value / 2;
 
   const updateDivider = () => {
     gsap.to(dividerX, {
       value: targetX,
-      duration: 0.5,
+      duration: 0.2,
       ease: "power3.out",
     });
   };
 
-  container.value.addEventListener("mousemove", (e) => {
-    const rect = container.value.getBoundingClientRect();
-    targetX = e.clientX - rect.left;
+  if (!isMobile.value) {
+    container.value.addEventListener("mousemove", (e) => {
+      const rect = container.value.getBoundingClientRect();
+      targetX = e.clientX - rect.left;
+      targetX = Math.max(0, Math.min(containerWidth.value, targetX));
+      updateDivider();
+    });
 
-    if (targetX < 0) targetX = 0;
-    if (targetX > width) targetX = width;
+    container.value.addEventListener("mouseleave", () => {
+      targetX = containerWidth.value / 2;
+      updateDivider();
+    });
+  }
 
-    updateDivider();
+  window.addEventListener("resize", () => {
+    containerWidth.value = container.value.clientWidth;
+    dividerX.value = containerWidth.value / 2;
   });
 });
 </script>
-

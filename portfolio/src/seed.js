@@ -46,7 +46,7 @@ export const projects = [
         subtitle: "A personal portfolio website to showcase projects and skills",
         tags: ["Vue", "GSAP", "Tailwind"],
         description:
-        "Designed and developed a personal portfolio website using Vue.js, GSAP for animations, and Tailwind CSS for styling to effectively showcase my projects and skills.",
+        "Designed and developed a personal portfolio website using Vue.js, GSAP for animations, Vuetify for base components, and Tailwind for styling to effectively showcase my projects and skills.",
         link: "#",
         gitlab: "#",
     },

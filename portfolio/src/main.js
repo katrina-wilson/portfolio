@@ -11,6 +11,11 @@ import '../index.css';
 import '@mdi/font/css/materialdesignicons.css';
 
 import '@fontsource/google-sans-code';
+import "@fontsource/roboto";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/400-italic.css"; 
+import "@fontsource/limelight";
+import "@fontsource/limelight/400.css";
 
 // GSAP 
 import { gsap } from "gsap";

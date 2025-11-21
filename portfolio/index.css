@@ -57,3 +57,11 @@ body {
 .code-font {
     font-family: 'Google Sans Code', monospace;
 }
+
+.roboto-font {
+    font-family: 'Roboto';
+}
+
+.design-font {
+    font-family: 'Limelight' !important;
+}

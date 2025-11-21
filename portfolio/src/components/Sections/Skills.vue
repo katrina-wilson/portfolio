@@ -2,7 +2,7 @@
     <section
       id="skills"
       ref="introRef"
-      class="tw:min-h-screen tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
+      class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
     >
         <div class="tw:h-full tw:flex tw:flex-col tw:w-full tw:px-6">
             <h2
@@ -16,6 +16,8 @@
 
             <div class="tw:flex tw:items-center tw:justify-center tw:flex-col tw:md:flex-row tw:w-full tw:gap-12">
                 <div ref="chartRef" class="tw:h-full tw:w-full tw:md:w-fit tw:flex tw:items-center tw:justify-center"/>
+                <div ref="legendHtmlRef" class="tw:hidden tw:flex tw:flex-wrap tw:justify-center tw:gap-3 tw:mt-4"></div>
+
 
                 <div class="tw:flex tw:justify-center tw:items-center tw:md:min-w-[40%] tw:md:max-w-[40%] tw:h-full tw:md:ml-8">
                     <v-scale-transition mode="out-in"> 
@@ -59,36 +61,114 @@ const getChartSize = () => {
     return { w, h: w, outerRadius, innerRadius };
 };
 
+const getFontSize = (innerRadius, outerRadius) => {
+  const radius = (innerRadius + outerRadius) / 2;
+  return Math.max(10, radius * 0.10); 
+};
+
+const legendHtmlRef = ref(null);
+
 const addLegend = () => {
-    legendG.selectAll("*").remove();
-    const rectSize = 20;
-    const spacing = 7;
-    const legendHeight = rectSize + spacing;
+  if (!legendG || !legendHtmlRef.value) return;
 
-    const legend = legendG
-        .selectAll(".legend-item")
-        .data(skills)
-        .enter()
-        .append("g")
+  const { w, h, outerRadius } = getChartSize();
+  const rectSize = 20;
+  const spacing = 7;
+  const legendItemHeight = rectSize + spacing;
+
+  const totalLegendHeight = skills.length * legendItemHeight;
+  const isSmallScreen = w < 400 || totalLegendHeight > h / 2;
+
+  // -----------------------------
+  // D3 legend inside circle
+  // -----------------------------
+  legendG.selectAll("*").remove();
+  if (!isSmallScreen) {
+    legendHtmlRef.value.classList.add("tw:hidden");
+    legendHtmlRef.value.classList.remove("tw:flex");
+
+    const startX = -80;
+    const startY = -totalLegendHeight / 2;
+
+    skills.forEach((d, i) => {
+      const g = legendG.append("g")
         .attr("class", "legend-item")
-        .attr("transform", (d, i) => `translate(-80, ${i * legendHeight - 55})`);
+        .attr("transform", `translate(${startX}, ${startY + i * legendItemHeight})`);
 
-    legend
-        .append("rect")
+      g.append("rect")
         .attr("width", rectSize)
         .attr("height", rectSize)
         .attr("rx", 20)
         .attr("ry", 20)
-        .style("fill", d => d.color);
+        .style("fill", d.color);
 
-    legend
-        .append("text")
+      g.append("text")
         .attr("x", 30)
         .attr("y", 15)
-        .style("fill", d => d.color)
+        .style("fill", d.color)
         .style("font-size", "14px")
-        .text(d => d.name);
+        .text(d.name);
+    });
+  } 
+  // -----------------------------
+  // HTML legend below chart
+  // -----------------------------
+  else {
+    legendHtmlRef.value.classList.remove("tw:hidden");
+    legendHtmlRef.value.classList.add("tw:flex");
+
+    legendHtmlRef.value.innerHTML = ""; // clear previous
+    skills.forEach(skill => {
+      const item = document.createElement("div");
+      item.className = "tw:flex tw:items-center tw:gap-2";
+
+      const colorBox = document.createElement("div");
+      colorBox.style.width = "20px";
+      colorBox.style.height = "20px";
+      colorBox.style.borderRadius = "20px";
+      colorBox.style.backgroundColor = skill.color;
+
+      const text = document.createElement("span");
+      text.textContent = skill.name;
+      text.style.color = skill.color;
+      text.style.fontSize = "14px";
+
+      item.appendChild(colorBox);
+      item.appendChild(text);
+
+      legendHtmlRef.value.appendChild(item);
+    });
+  }
 };
+//     legendG.selectAll("*").remove();
+//     const rectSize = 20;
+//     const spacing = 7;
+//     const legendHeight = rectSize + spacing;
+
+//     const legend = legendG
+//         .selectAll(".legend-item")
+//         .data(skills)
+//         .enter()
+//         .append("g")
+//         .attr("class", "legend-item")
+//         .attr("transform", (d, i) => `translate(-80, ${i * legendHeight - 55})`);
+
+//     legend
+//         .append("rect")
+//         .attr("width", rectSize)
+//         .attr("height", rectSize)
+//         .attr("rx", 20)
+//         .attr("ry", 20)
+//         .style("fill", d => d.color);
+
+//     legend
+//         .append("text")
+//         .attr("x", 30)
+//         .attr("y", 15)
+//         .style("fill", d => d.color)
+//         .style("font-size", "14px")
+//         .text(d => d.name);
+// };
 
 const buildChart = () => {
     const { w, h, outerRadius, innerRadius } = getChartSize();
@@ -180,15 +260,26 @@ const buildChart = () => {
         .attr("fill", d => d.data.color)
         .attr("d", d => arcGen(d.current));
 
+    // sliceGroups
+    //     .append("text")
+    //     .attr("text-anchor", "middle")
+    //     .attr("dy", ".35em")
+    //     .style("fill", "#fff")
+    //     .style("font-size", "16px")
+    //     .style("pointer-events", "auto")
+    //     .text(d => `${d.data.value}%`)
+    //     .attr("transform", d => `translate(${arcGen.centroid(d.current)})`);
+
     sliceGroups
         .append("text")
         .attr("text-anchor", "middle")
         .attr("dy", ".35em")
         .style("fill", "#fff")
-        .style("font-size", "16px")
+        .style("font-size", d => `${getFontSize(innerRadius, outerRadius)}px`)
         .style("pointer-events", "auto")
         .text(d => `${d.data.value}%`)
         .attr("transform", d => `translate(${arcGen.centroid(d.current)})`);
+
 
     const progress = { t: 0 };
     const animateChart = tValue => {
@@ -210,8 +301,12 @@ const buildChart = () => {
                 path.attr("d", arcGen(d.current)).attr("fill", d.data.color);
             }
 
-            text.attr("transform", `translate(${arcGen.centroid(d.current)})`);
+            text.attr("transform", `translate(${arcGen.centroid(d.current)})`)
+                .style("font-size", `${getFontSize(innerRadius, outerRadius)}px`);
+
+            // text.attr("transform", `translate(${arcGen.centroid(d.current)})`);
             });
+
         },
         onComplete: () => addLegend(),
         });
@@ -239,4 +334,10 @@ onUnmounted(() => {
     window.removeEventListener("resize", buildChart);
 });
 </script>
+
+<style lang="scss">
+svg {
+    overflow: visible;
+}
+</style>
   

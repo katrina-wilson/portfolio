@@ -2,7 +2,7 @@
     <section
       id="home"
       ref="introRef"
-      class="tw:min-h-screen tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
+      class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
     >
       <div class="tw:mx-auto tw:px-6 tw:text-center tw:z-10">
           <div class="tw:w-full tw:text-6xl tw:md:text-8xl tw:font-bold tw:text-foreground tw:mb-6 tw:leading-18">
