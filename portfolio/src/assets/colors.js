@@ -30,7 +30,7 @@ export const dark = {
     'back-end-development': '#8FC14A',
     'data-science': '#FFD166',
 
-    foreground: '#2a303b',
+    foreground: '#FFFFFF',
 
     muted: '#eef7f3',
     'muted-foreground': '#B7B7B7',

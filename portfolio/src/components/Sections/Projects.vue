@@ -53,7 +53,7 @@ onMounted(async () => {
         ease: "power3.out",
         scrollTrigger: {
             trigger: card,
-            start: "top 90%",
+            start: "top 95%",
             toggleActions: "play none none reverse",
             scroller: "#homeScroll"
         },
