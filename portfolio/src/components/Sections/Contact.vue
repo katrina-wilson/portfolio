@@ -1,6 +1,7 @@
 <template>
   <section
     id="contact"
+    ref="contactRef"
     class="tw:min-h-[90vh] tw:max-h-[90vh] tw:flex tw:flex-col tw:items-center tw:pt-18 tw:overflow-hidden"
   >
     <div class="tw:mx-auto tw:px-6">
@@ -8,7 +9,7 @@
         <h2 class="tw:text-5xl tw:md:text-6xl tw:font-bold tw:mb-8 tw:text-foreground">
           Let's Connect!
         </h2>
-        <p class="tw:text-xl tw:text-muted-foreground tw:mb-16 tw:leading-relaxed">
+        <p class="contact-item tw:text-xl tw:text-muted-foreground tw:mb-16 tw:leading-relaxed">
           I'm always interested in hearing about new projects and opportunities.
           Whether you have a question or just want to say hi, feel free to reach out!
         </p>
@@ -17,7 +18,7 @@
           <div
             v-for="link in socialLinks"
             :key="link.label"
-            class="tw:md:w-32 tw:w-26"
+            class="contact-item tw:md:w-32 tw:w-26"
           >
             <v-btn
               stacked
@@ -31,7 +32,7 @@
             />
           </div>
         </div>
-        <div class="tw:flex tw:flex-col tw:md:mb-4 tw:mb-16">
+        <div class="contact-item tw:flex tw:flex-col tw:md:mb-4 tw:mb-16">
           <div class="tw:italic">
             Or contact me directly at
           </div>
@@ -41,16 +42,21 @@
         </div>
       </div>
 
-      <NameLegs/>
+      <NameLegs class="contact-item"/>
     </div>
   </section>
 </template>
   
 <script setup>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, nextTick } from "vue";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { socialLinks } from "@/seed";
-import NameLegs from "../NameLegs.vue";
+import NameLegs from "@/components/NameLegs.vue";
 
+gsap.registerPlugin(ScrollTrigger);
+
+const contactRef = ref(null);
 const windowWidth = ref(window.innerWidth);
 const socialButtonSize = ref("x-large");
 
@@ -59,9 +65,30 @@ const updateWidth = () => {
   socialButtonSize.value = windowWidth.value < 640 ? undefined : "x-large";
 };
 
-onMounted(() => {
+onMounted(async () => {
   window.addEventListener("resize", updateWidth);
   updateWidth();
+
+  await nextTick();
+
+  if (!contactRef.value) return;
+
+  const items = contactRef.value.querySelectorAll(".contact-item");
+
+  items.forEach((item) => {
+    gsap.from(item, {
+      y: 60,
+      opacity: 0,
+      duration: 0.8,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: item,
+        start: "top 90%",
+        toggleActions: "play none none reverse",
+        scroller: "#homeScroll"
+      },
+    });
+  });
 });
 
 onUnmounted(() => {
