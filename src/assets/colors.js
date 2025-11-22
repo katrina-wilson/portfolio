@@ -6,7 +6,7 @@ export const light = {
     brain: '#000000',
     'brain-secondary': '#313534',
 
-    'front-end-development': '#026374',
+    'front-end-development': '#14678B',
     'ui-ux-design': '#3B2B4B',
     'back-end-development': '#3B5720',
     'data-science': '#7A5C00',
@@ -20,7 +20,7 @@ export const light = {
 export const dark = {
     background: '#1D201F',
 
-    primary: '#C05746',
+    primary: '#E56D59',
 
     brain: '#FFF6DF',
     'brain-secondary': '#F7EBE8',
@@ -37,15 +37,15 @@ export const dark = {
 };
 
 export const lightPieColors = [
-    '#049CB0',
-    '#008091',
-    '#006471',
-    '#00515C',
+    '#3894BB',
+    '#9A75C0',
+    '#6B9B3D',
+    '#B78A00',
 ];
 
 export const darkPieColors = [
     '#A8FFF6',
-    '#6FF8E9',
-    '#3FC8B9',
-    '#1E9B8E',
+    '#E1C4FF',
+    '#C4FF8B',
+    '#FFE699',
 ];

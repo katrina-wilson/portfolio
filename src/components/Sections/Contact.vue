@@ -2,7 +2,7 @@
   <section
     id="contact"
     ref="contactRef"
-    class="tw:min-h-[90vh] tw:max-h-[90vh] tw:flex tw:flex-col tw:items-center tw:pt-18 tw:overflow-hidden"
+    class="tw:min-h-fit tw:pb-16 tw:flex tw:flex-col tw:items-center tw:pt-18 tw:overflow-hidden"
   >
     <div class="tw:mx-auto tw:px-6">
       <div class="tw:max-w-3xl tw:mx-auto tw:text-center">
@@ -18,18 +18,19 @@
           <div
             v-for="link in socialLinks"
             :key="link.label"
-            class="contact-item tw:md:w-32 tw:w-26"
+            class="contact-item tw:md:w-32 tw:w-23"
           >
             <v-btn
               stacked
               :prepend-icon="link.icon"
               variant="outlined"
-              :text="link.label"
               class="rounded-lg tw:w-full"
               :size="socialButtonSize"
               :href="link.href"
               target="_blank"
-            />
+            >
+              {{ link.label }}
+            </v-btn>
           </div>
         </div>
         <div class="contact-item tw:flex tw:flex-col tw:md:mb-4 tw:mb-16">
@@ -62,7 +63,15 @@ const socialButtonSize = ref("x-large");
 
 const updateWidth = () => {
   windowWidth.value = window.innerWidth;
-  socialButtonSize.value = windowWidth.value < 640 ? undefined : "x-large";
+  if (windowWidth.value < 400) {
+    socialButtonSize.value = 'small';
+    return;
+  }
+  if (windowWidth.value < 640) {
+    socialButtonSize.value = undefined;
+  } else {
+    'x-large';
+  }
 };
 
 onMounted(async () => {

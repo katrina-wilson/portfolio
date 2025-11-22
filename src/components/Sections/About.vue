@@ -24,7 +24,7 @@
         
 
         <p class="about-item tw:text-lg tw:text-muted-foreground tw:leading-relaxed tw:text-center">
-          Outside of work, I’m usually diving into some kind of project—tech, creative, or completely 
+          Outside of work, I’m usually diving into some kind of project—tech, creative, or 
           something completely different. I love learning, experimenting, and stretching both sides of my brain. 
           And when I’m not tinkering, I’m outside whenever I can be: hiking, climbing, staying active, 
           and soaking up time in nature.

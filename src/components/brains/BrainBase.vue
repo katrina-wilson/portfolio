@@ -23,7 +23,7 @@
       <span class="tw:font-extrabold tw:text-base tw:sm:text-lg tw:md:text-3xl code-font">
         &lt;Developer/&gt;
       </span>
-      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-3">
+      <span class="roboto-font tw:text-sm tw:md:text-base tw:pt-3">
         I build clean, efficient, and scalable front-end and full-stack applications.
       </span>
     </div>
@@ -39,7 +39,7 @@
       <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-3xl design-font">
         Designer
       </span>
-      <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-3">
+      <span class="roboto-font tw:text-sm tw:md:text-base tw:pt-3">
         I create intuitive and engaging designs focusing on UI, UX, and accessibility.
       </span>
     </div>
@@ -61,7 +61,7 @@ import CreativeBrain from "@/components/brains/CreativeBrain.vue";
 const container = ref(null);
 const containerWidth = ref(800);
 const dividerX = ref(0);
-const isMobile = ref(window.innerWidth < 768);
+const isMobile = ref(window.innerWidth < 650);
 
 const minOpacity = 0.2;
 

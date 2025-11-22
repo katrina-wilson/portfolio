@@ -1,5 +1,5 @@
 <template>
-    <div class="tw:flex tw:w-full tw:items-center tw:justify-center tw:md:h-[280px] tw:h-26">
+    <div class="tw:flex tw:w-full tw:items-center tw:justify-center tw:md:h-[280px] tw:h-32 tw:mt-[-18px]">
       <!-- K -->
         <div class="animation-container">
             <svg ref="svgKRef" :viewBox="kViewBox">
@@ -459,7 +459,7 @@ onUnmounted(() => {
 <style scoped>
 .animation-container {
     width: 25%;
-    height: 60vh;
+    height: fit-content;
     overflow: hidden;
     margin: 0;
     padding: 0;

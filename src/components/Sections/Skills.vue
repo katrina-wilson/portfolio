@@ -15,7 +15,7 @@
 
             <div class="tw:flex tw:items-center tw:justify-center tw:flex-col tw:md:flex-row tw:w-full tw:gap-12">
                 <div ref="chartRef" class="tw:h-full tw:w-full tw:md:w-fit tw:flex tw:items-center tw:justify-center"/>
-                <div ref="legendHtmlRef" class="tw:hidden tw:flex tw:flex-wrap tw:justify-center tw:gap-3 tw:mt-4"></div>
+                <div ref="legendHtmlRef" class="tw:min-h-[58px] tw:flex tw:flex-wrap tw:justify-center tw:gap-3 tw:mt-4"></div>
 
 
                 <div class="tw:flex tw:justify-center tw:items-center tw:md:min-w-[40%] tw:md:max-w-[40%] tw:h-full tw:md:ml-8">
@@ -26,7 +26,7 @@
                         />
                         <div v-else>
                             <p class="tw:italic tw:mt-10 tw:text-muted-foreground tw:text-lg">
-                                Select a skill slice to see details.
+                                {{ isMobile ? 'Tap a skill slice to see details.' : 'Click a skill slice to see details.' }}
                             </p>
                         </div>
                     </v-scale-transition>
@@ -56,6 +56,7 @@ const currentSkill = ref(null);
 const isAnimating = ref(true);
 const color = ref(null);
 const legendHtmlRef = ref(null);
+const isMobile = ref(window.innerWidth < 650);
 
 let svg, slicesG, legendG, arcGen, hoverArcGen, pieGen;
 let sliceGroups;
@@ -63,80 +64,90 @@ let sliceGroups;
 const isDark = computed(() => theme.global.current.value.dark);
 
 const getChartSize = () => {
-    const w = Math.min(window.innerWidth * 0.6, 400);
-    const outerRadius = w / 2 - 10;
-    const innerRadius = w / 3;
+    let w;
+    let outerRadius;
+    let innerRadius;
+
+    if (isMobile.value) {
+        w = Math.min(window.innerWidth * 0.8, 400);
+        outerRadius = w / 2 - 5;
+        innerRadius = outerRadius * 0.60;
+    } else {
+        w = Math.min(window.innerWidth * 0.6, 450);
+        outerRadius = w / 2 - 5;
+        innerRadius = outerRadius * 0.70;
+    }
     return { w, h: w, outerRadius, innerRadius };
 };
 
 const getFontSize = (innerRadius, outerRadius) => {
   const radius = (innerRadius + outerRadius) / 2;
-  return Math.max(10, radius * 0.10); 
+  return Math.max(10, radius * 0.12); 
 };
 
 const addLegend = () => {
-  if (!legendG || !legendHtmlRef.value) return;
+    if (!legendG || !legendHtmlRef.value) return;
 
-  const { w, h, outerRadius } = getChartSize();
-  const rectSize = 20;
-  const spacing = 7;
-  const legendItemHeight = rectSize + spacing;
-  const totalLegendHeight = skills.length * legendItemHeight;
-  const isSmallScreen = w < 400 || totalLegendHeight > h / 2;
+    const { w, h, outerRadius } = getChartSize();
+    const rectSize = 20;
+    const spacing = 7;
+    const legendItemHeight = rectSize + spacing;
+    const totalLegendHeight = skills.length * legendItemHeight;
+    const isSmallScreen = w < 400 || totalLegendHeight > h / 2;
 
-  legendG.selectAll("*").remove();
-  if (!isSmallScreen) {
-    legendHtmlRef.value.classList.add("tw:hidden");
-    legendHtmlRef.value.classList.remove("tw:flex");
+    legendG.selectAll("*").remove();
+    if (!isSmallScreen) {
+        legendHtmlRef.value.innerHTML = "";
+        legendHtmlRef.value.classList.remove("tw:flex");
 
-    const startX = -80;
-    const startY = -totalLegendHeight / 2;
+        const startX = -80;
+        const startY = -totalLegendHeight / 2;
 
-    skills.forEach((d, i) => {
-      const g = legendG.append("g")
-        .attr("class", "legend-item")
-        .attr("transform", `translate(${startX}, ${startY + i * legendItemHeight})`);
+        skills.forEach((d, i) => {
+            const g = legendG.append("g")
+                .attr("class", "legend-item")
+                .attr("transform", `translate(${startX}, ${startY + i * legendItemHeight})`);
 
-      g.append("rect")
-        .attr("width", rectSize)
-        .attr("height", rectSize)
-        .attr("rx", 20)
-        .attr("ry", 20)
-        .style("fill", color.value(i));
+            g.append("rect")
+                .attr("width", rectSize)
+                .attr("height", rectSize)
+                .attr("rx", 20)
+                .attr("ry", 20)
+                .style("fill", color.value(i));
 
-      g.append("text")
-        .attr("x", 30)
-        .attr("y", 15)
-        .style("fill", color.value(i))
-        .style("font-size", "14px")
-        .text(d.name);
-    });
-  } else {
-    legendHtmlRef.value.classList.remove("tw:hidden");
-    legendHtmlRef.value.classList.add("tw:flex");
+            g.append("text")
+                .attr("x", 30)
+                .attr("y", 15)
+                .style("fill", 'rgb(var(--v-theme-muted-foreground))')
+                .style("font-size", "14px")
+                .text(d.name);
+        });
+    } else {
+        legendHtmlRef.value.innerHTML = "";
+        legendHtmlRef.value.classList.add("tw:flex");
 
-    legendHtmlRef.value.innerHTML = "";
-    skills.forEach((skill, i) => {
-      const item = document.createElement("div");
-      item.className = "tw:flex tw:items-center tw:gap-2";
+        legendHtmlRef.value.innerHTML = "";
+        skills.forEach((skill, i) => {
+            const item = document.createElement("div");
+            item.className = "tw:flex tw:items-center tw:gap-2";
 
-      const colorBox = document.createElement("div");
-      colorBox.style.width = "20px";
-      colorBox.style.height = "20px";
-      colorBox.style.borderRadius = "20px";
-      colorBox.style.backgroundColor = color.value(i);
+            const colorBox = document.createElement("div");
+            colorBox.style.width = "20px";
+            colorBox.style.height = "20px";
+            colorBox.style.borderRadius = "20px";
+            colorBox.style.backgroundColor = color.value(i);
 
-      const text = document.createElement("span");
-      text.textContent = skill.name;
-      text.style.color = color.value(i);
-      text.style.fontSize = "14px";
+            const text = document.createElement("span");
+            text.textContent = skill.name;
+            text.style.color = 'rgb(var(--v-theme-muted-foreground))';
+            text.style.fontSize = "14px";
 
-      item.appendChild(colorBox);
-      item.appendChild(text);
+            item.appendChild(colorBox);
+            item.appendChild(text);
 
-      legendHtmlRef.value.appendChild(item);
-    });
-  }
+            legendHtmlRef.value.appendChild(item);
+        });
+    }
 };
 
 const buildChart = () => {
@@ -293,7 +304,8 @@ const buildChart = () => {
 };
 
 watch(() => isDark.value, () => {
-    legendHtmlRef.value.classList.add("tw:hidden");
+    legendHtmlRef.value.innerHTML = "";
+
     if (isDark.value) {
         color.value = d3.scaleOrdinal(darkPieColors);
     } else {
