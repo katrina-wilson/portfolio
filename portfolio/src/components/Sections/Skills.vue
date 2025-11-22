@@ -293,6 +293,7 @@ const buildChart = () => {
 };
 
 watch(() => isDark.value, () => {
+    legendHtmlRef.value.classList.add("tw:hidden");
     if (isDark.value) {
         color.value = d3.scaleOrdinal(darkPieColors);
     } else {

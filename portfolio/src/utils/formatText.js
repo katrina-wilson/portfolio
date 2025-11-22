@@ -11,7 +11,6 @@ export const toCamelCase = (text) => {
 };
 
 export const toSnakeCase = (text) => {
-    console.log(text)
     return text
         .trim()
         .toLowerCase()

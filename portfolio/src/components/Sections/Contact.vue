@@ -13,21 +13,32 @@
             Whether you have a question or just want to say hi, feel free to reach out!
           </p>
 
-          <div class="tw:flex tw:flex-wrap tw:justify-center tw:gap-6 tw:mb-16">
-                <div
-                  v-for="link in socialLinks"
-                  :key="link.label"
-                >
-                  <v-btn
-                    stacked
-                    :prepend-icon="link.icon"
-                    variant="outlined"
-                    :text="link.label"
-                    class="rounded-lg"
-                    size="x-large"
-                  />
-                </div>
+          <div class="tw:flex tw:flex-wrap tw:justify-center tw:gap-6 tw:mb-6 tw:md:mb-10">
+            <div
+              v-for="link in socialLinks"
+              :key="link.label"
+              class="tw:md:w-32 tw:w-26"
+            >
+              <v-btn
+                stacked
+                :prepend-icon="link.icon"
+                variant="outlined"
+                :text="link.label"
+                class="rounded-lg tw:w-full"
+                :size="socialButtonSize"
+                :href="link.href"
+                target="_blank"
+              />
+            </div>
           </div>
+          <div class="tw:flex tw:flex-col tw:md:mb-4 tw:mb-16">
+              <div class="tw:italic">
+                Or contact me directly at
+              </div>
+              <div class="tw:font-bold">
+                wilson.katrinak@gmail.com
+              </div>
+            </div>
         </div>
 
         <NameLegs/>
@@ -36,10 +47,24 @@
 </template>
   
 <script setup>
-import { onMounted } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import { socialLinks } from "@/seed";
 import NameLegs from "../NameLegs.vue";
 
+const windowWidth = ref(window.innerWidth);
+const socialButtonSize = ref("x-large");
+
+const updateWidth = () => {
+  windowWidth.value = window.innerWidth;
+  socialButtonSize.value = windowWidth.value < 640 ? undefined : "x-large";
+};
+
 onMounted(() => {
+  window.addEventListener("resize", updateWidth);
+  updateWidth();
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", updateWidth);
 });
 </script>

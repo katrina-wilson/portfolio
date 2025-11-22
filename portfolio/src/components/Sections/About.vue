@@ -10,7 +10,7 @@
         About
       </h2>
 
-      <div class="tw:flex tw:flex-col tw:items-center tw:w-full tw:max-w-4xl tw:space-y-12">
+      <div class="tw:flex tw:flex-col tw:items-center tw:w-full tw:max-w-4xl tw:md:space-y-12 tw:space-y-1">
         <p class="tw:text-xl tw:text-muted-foreground tw:leading-relaxed tw:text-center">
           I’m a full-stack developer with a strong front-end focus, blending design intuition 
           with solid engineering. I specialize in Vue and modern front-end tooling, and I enjoy 

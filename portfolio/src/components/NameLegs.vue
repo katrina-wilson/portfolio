@@ -1,8 +1,8 @@
 <template>
-    <div class="tw:flex tw:w-full tw:items-center tw:justify-center tw:h-[280px]">
+    <div class="tw:flex tw:w-full tw:items-center tw:justify-center tw:md:h-[280px] tw:h-26">
       <!-- K -->
         <div class="animation-container">
-            <svg ref="svgKRef" viewBox="30 60 450 450">
+            <svg ref="svgKRef" :viewBox="kViewBox">
                 <defs>
                     <pattern id="kBg" width="20" height="20" x="0" y="0" patternUnits="userSpaceOnUse">
                         <circle 
@@ -40,7 +40,14 @@
                     stroke-linejoin="square" 
                     stroke-linecap="round" 
                 />
-                <rect fill="url(#kBg)" clip-path="url(#kMask)" width="100%" height="100%" />
+                <rect 
+                    fill="url(#kBg)" 
+                    clip-path="url(#kMask)" 
+                    :x="kViewBoxX" 
+                    :y="kViewBoxY" 
+                    :width="kViewBoxWidth" 
+                    :height="kViewBoxHeight" 
+                />
                 <use 
                     href="#bigK" 
                     fill="none" 
@@ -79,7 +86,7 @@
   
       <!-- W -->
         <div class="animation-container tw:overflow-visible">
-            <svg ref="svgWRef" viewBox="335 10 390 550">
+            <svg ref="svgWRef" :viewBox="wViewBox">
                 <defs>
                     <pattern id="wBg" width="20" height="20" x="8" y="0" patternUnits="userSpaceOnUse" viewBox="0 0 20 20">
                         <circle 
@@ -177,22 +184,23 @@
   
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useTheme } from 'vuetify';
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 
 gsap.registerPlugin(DrawSVGPlugin);
 
-const theme = useTheme();
 
-// C Character refs
+// K Character refs
 const svgKRef = ref(null);
 const legLRef = ref(null);
 const legRRef = ref(null);
 const bigKRef = ref(null);
 const ouchGroupRef = ref(null);
+const kViewBox = ref("30 60 450 450");
+const [kViewBoxX, kViewBoxY, kViewBoxWidth, kViewBoxHeight] = kViewBox.value.split(" ");
+
   
-// O Character refs
+// W Character refs
 const svgWRef = ref(null);
 const bigWRef = ref(null);
 const WGroupRef = ref(null);
@@ -200,6 +208,7 @@ const WArmLDownRef = ref(null);
 const WArmRDownRef = ref(null);
 const WLegLRef = ref(null);
 const WLegRRef = ref(null);
+const wViewBox = ref("335 10 390 550");
 
 let mainTlC = null;
 let tlC = null;
@@ -216,7 +225,17 @@ const legRUpArr = "404.5 327.5 406.5 374.5 404.5 414.5 428 414.5".split(' ').map
 let legLDownArr = [];
 let legRDownArr = [];
 
-const isDark = computed(() => theme.global.current.value.dark);
+const updateViewBoxes = () => {
+  const width = window.innerWidth;
+
+  if (width < 640) { // small screen
+    kViewBox.value = "230 110 270 350";
+    wViewBox.value = "335 10 230 550";
+  } else { // larger screens
+    kViewBox.value = "30 60 450 450";
+    wViewBox.value = "335 10 390 550";
+  }
+};
 
 const onUpdateC = () => {
     if (legLRef.value && legRRef.value) {
@@ -226,6 +245,9 @@ const onUpdateC = () => {
 };
 
 onMounted(() => {
+    updateViewBoxes();
+    window.addEventListener("resize", updateViewBoxes);
+
     // K Character Animation
     legLDownArr = legLRef.value.getAttribute('points').split(' ').map(Number);
     legRDownArr = legRRef.value.getAttribute('points').split(' ').map(Number);
@@ -423,6 +445,8 @@ onMounted(() => {
 });
   
 onUnmounted(() => {
+    window.removeEventListener("resize", updateViewBoxes);
+
     if (mainTlC) mainTlC.kill();
     if (tlC) tlC.kill();
     if (patternTlC) patternTlC.kill();

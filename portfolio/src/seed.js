@@ -90,16 +90,16 @@ export const socialLinks = [
     { 
         label: "Email", 
         icon: 'mdi-email',
-        href: "mailto:katrina@example.com" 
+        href: "mailto:wilson.katrinak@gmail.com" 
     },
     { 
         label: "LinkedIn", 
         icon: 'mdi-linkedin',
-        href: "https://linkedin.com" 
+        href: "https://www.linkedin.com/in/kkosmides/" 
     },
     { 
         label: "GitHub", 
         icon: 'mdi-github',
-        href: "https://github.com" 
+        href: "https://github.com/katrina-wilson" 
     }
 ];
