@@ -5,6 +5,8 @@
     --color-primary-foreground: rgb(var(--v-theme-primary-foreground));
 
     --color-tag-color: rgb(var(--v-theme-tag-color));
+    --color-brain: rgb(var(--v-theme-brain));
+    --color-brain-secondary: rgb(var(--v-theme-brain-secondary));
 
     --color-muted-foreground: rgb(var(--v-theme-muted-foreground));
 

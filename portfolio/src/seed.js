@@ -3,9 +3,13 @@ export const roles = [
     'software engineer',
     'tech enthusiast',
     'designer',
+    'critical thinker',
     'creative',
     'lifelong learner',
     'problem solver',
+    'maker',
+    'developer',
+    'leader',
 ];
 
 export const skills = [
@@ -13,7 +17,7 @@ export const skills = [
         name: "Front End Development", 
         value: 62, 
         color: "#3F98B1",
-        tags: ["Vue", "React", "Tailwind", "GSAP", "D3.js", "Typescript", "JavaScript", "Data Visualization", "Vuex", "Pinia", "Redux", "Tauri"], 
+        tags: ["Vue", "React", "Tailwind", "Vuetify", "GSAP", "D3.js", "Typescript", "JavaScript", "Material UI", "Vuex", "Data Visualization", "Pinia", "Redux", "Tauri", "Mobile Development"], 
         level: 'Expert',
     },
     { 
@@ -27,14 +31,14 @@ export const skills = [
         name: "Back End Development", 
         value: 10, 
         color: "#003C80",
-        tags: ["Node.js", "FastAPI", "PostgreSQL", "REST APIs", "Authentication"], 
+        tags: ["Node.js", "FastAPI", "PostgreSQL", "REST APIs", "Authentication", "SQLAlchemy", "Alembic", "Knex", "Objection"], 
         level: 'Intermediate',
     },
     { 
         name: "Data Science", 
         value: 8, 
         color: "#011936",
-        tags: ["Python", "Pandas", "Machine Learning"], 
+        tags: ["Python", "Pandas", "Machine Learning", "Hugging Face", "NLP"], 
         level: 'Novice',
     },
 ];
@@ -44,17 +48,17 @@ export const projects = [
         id: 0,
         title: "Portfolio",
         subtitle: "A personal portfolio website to showcase projects and skills",
-        tags: ["Vue", "GSAP", "Tailwind"],
+        tags: ["Vue", "Tailwind", "GSAP", "Vuetify", "Mobile Development", "Figma", "Accessibility"],
         description:
         "Designed and developed a personal portfolio website using Vue.js, GSAP for animations, Vuetify for base components, and Tailwind for styling to effectively showcase my projects and skills.",
-        link: "#",
+        link: null,
         gitlab: "#",
     },
     {
         id: 1,
         title: "Recipe Book",
         subtitle: "Modern recipe book web application and mobile app",
-        tags: ["Vue", "FastAPI", "Tailwind", "Mobile Development"],
+        tags: ["Vue", "Tailwind", "Mobile Development", "FastAPI", "SQLAlchemy", "Alembic", "Figma", "User Research", "Usability Testing"],
         description:
         "Built a full-stack recipe book application with user authentication, recipe management, and meal planning features. Developed both web and mobile versions for cross-platform accessibility.",
         link: null,
@@ -64,7 +68,7 @@ export const projects = [
         id: 2,
         title: "Story Rewriter System",
         subtitle: "Component library and design tokens for enterprise use",
-        tags: ["Hugging Face", "Python", "NLP", "APIs"],
+        tags: ["Hugging Face", "Python", "NLP", "REST APIs", "Vue", "Figma"],
         description:
         "Created an AI-powered story rewriting system that leverages NLP models to assist writers in enhancing their narratives through suggestions and automated edits.",
         link: null,
@@ -74,7 +78,7 @@ export const projects = [
         id: 3,
         title: "Dashboard Analytics",
         subtitle: "Data visualization dashboard with real-time updates",
-        tags: ["Vue", "D3.js"],
+        tags: ["Vue", "D3.js", "Figma", "Accessibility", "Usability Testing", "Data Visualization"],
         description:
         "Developed an analytics dashboard featuring interactive charts, real-time data updates, and custom visualizations for business metrics.",
         link: null,

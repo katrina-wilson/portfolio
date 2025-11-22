@@ -241,6 +241,7 @@ const buildChart = () => {
         .style("font-size", d => `${getFontSize(innerRadius, outerRadius)}px`)
         .style("pointer-events", "auto")
         .text(d => `${d.data.value}%`)
+        .style("visibility", "hidden")
         .attr("transform", d => `translate(${arcGen.centroid(d.current)})`);
 
 
@@ -266,6 +267,7 @@ const buildChart = () => {
                     }
 
                     text.attr("transform", `translate(${arcGen.centroid(d.current)})`)
+                        .style("visibility", "visible")
                         .style("font-size", `${getFontSize(innerRadius, outerRadius)}px`);
                 });
             },

@@ -1,7 +1,7 @@
 <template>
     <section
         id="contact"
-        class="tw:min-h-[80vh] tw:max-h-fit tw:flex tw:flex-col tw:items-center tw:pt-18"
+        class="tw:min-h-[90vh] tw:max-h-[90vh] tw:flex tw:flex-col tw:items-center tw:pt-18 tw:overflow-hidden"
         >
     <div class="tw:mx-auto tw:px-6">
         <div class="tw:max-w-3xl tw:mx-auto tw:text-center">

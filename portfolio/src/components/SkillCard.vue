@@ -43,7 +43,7 @@
                     outlined
                     small
                     label
-                    color="tag-color"
+                    :color="toSnakeCase(props.skill.name)"
                     :text="tag"
                 />
             </div>
@@ -53,6 +53,7 @@
 </template>
 
 <script setup>
+import { toSnakeCase } from "@/utils/formatText";
 import { defineProps } from "vue";
 
 const props = defineProps({

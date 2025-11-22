@@ -1,6 +1,13 @@
 export const light = {
     background: '#FFF6DF',
-    'tag-color': '#003631',
+    'tag-color': '#00515C',
+    brain: '#000000',
+    'brain-secondary': '#313534',
+
+    'front-end-development': '#026374',
+    'ui-ux-design': '#3B2B4B',
+    'back-end-development': '#3B5720',
+    'data-science': '#7A5C00',
 
 
     foreground: '#2a303b',
@@ -60,9 +67,13 @@ export const dark = {
     primary: '#C05746',
     'muted-foreground': '#B7B7B7',
     'tag-color': '#A8FFF6',
+    brain: '#FFF6DF',
+    'brain-secondary': '#F7EBE8',
 
-
-
+    'front-end-development': '#4EC5D6',
+    'ui-ux-design': '#C19CFF',
+    'back-end-development': '#8FC14A',
+    'data-science': '#FFD166',
 
     card: '#ffffff',
     'card-foreground': '#2a303b',
@@ -114,10 +125,10 @@ export const dark = {
 };
 
 export const lightPieColors = [
-    '#249689',
-    '#1A7C71',
-    '#085B52',
-    '#003631',
+    '#049CB0',
+    '#008091',
+    '#006471',
+    '#00515C',
 ];
 
 export const darkPieColors = [

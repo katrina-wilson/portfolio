@@ -9,3 +9,12 @@ export const toCamelCase = (text) => {
         })
         .join('');
 };
+
+export const toSnakeCase = (text) => {
+    console.log(text)
+    return text
+        .trim()
+        .toLowerCase()
+        .replace(/\s+/g, '-')
+        .replace(/\//g, '-');  
+};

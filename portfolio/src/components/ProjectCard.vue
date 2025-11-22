@@ -26,7 +26,7 @@
             outlined
             small
             label
-            color="tag-color"
+            :color="getSkillCategorySnakeCase(tag)"
             :text="tag"
           />
         </div>
@@ -46,7 +46,7 @@
             <v-tooltip
               v-if="!props.project?.link"
               activator="parent"
-              text="Coming Soon!"
+              :text="props.project.title === 'Portfolio' ? `You're already here!` : 'Coming Soon!'"
             />
           </div>
           <div>
@@ -71,8 +71,9 @@
 </template>
 
 <script setup>
-import { toCamelCase } from "@/utils/formatText";
+import { toSnakeCase } from "@/utils/formatText";
 import { defineProps } from "vue";
+import { skills } from "@/seed";
 
 const props = defineProps({
   project: {
@@ -80,6 +81,19 @@ const props = defineProps({
     default: () => {},
   }
 });
+
+const getSkillCategorySnakeCase = (tag) => {
+  let skillName = null;
+  for (const skill of skills) {
+    if (skill.tags.includes(tag)) {
+      skillName = skill.name;
+    }
+  }
+  if (skillName) {
+    return toSnakeCase(skillName);
+  }
+  return 'brain';
+};
 </script>
 
 <style scoped>

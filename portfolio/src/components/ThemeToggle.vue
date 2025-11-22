@@ -1,27 +1,3 @@
-<!-- <template>
-  <v-switch
-    v-model="isDark"
-    inset
-    hide-details
-    @change="toggleTheme"
-  />
-</template>
-
-<script setup>
-import { ref } from "vue";
-import { useTheme } from "vuetify";
-
-const theme = useTheme();
-
-const isDark = ref(theme.global.current.dark);
-
-const toggleTheme = () => {
-    theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
-};
-</script> -->
-
-
-
 <template>
   <div class="tw:flex tw:h-14 tw:items-center tw:justify-center">
     <div class="tw:w-full tw:max-w-[130px]">
@@ -34,13 +10,13 @@ const toggleTheme = () => {
           class="tw:block tw:w-full tw:h-auto"
           fill="none"
           preserveAspectRatio="xMidYMid meet"
-          viewBox="0 0 541 329"
+          viewBox="-100 0 620 319"
         >
           <!-- Background track with animated color transition -->
           <rect
             :fill="isDark ? '#121820' : '#5F9EFF'"
-            :stroke="isDark ? 'white' : 'none'"
-            :stroke-width="isDark ? 4 : 0"
+            :stroke="isDark ? '#FFFFFF' : '#588DDF'"
+            :stroke-width="isDark ? 4 : 4"
             height="191"
             rx="95.5"
             width="421"
@@ -150,22 +126,12 @@ const svgPathsDark = {
   moon: "M417.5 88 C458.9214 88 492.5 121.5786 492.5 163 C492.5 204.421 458.9214 238 417.5 238 C404.6567 238 392.5681 234.77 382 229.081 C405.5155 216.422 421.5 191.578 421.5 163 C421.5 134.4218 405.5157 109.5774 382 96.91797 C392.568 91.22877 404.6569 88 417.5 88 Z",
 };
 
-const svgPathsLight = {
-  pf1cbc80: "M387 158C387 169.046 378.046 178 367 178H349C337.954 178 329 169.046 329 158C329 146.954 337.954 138 349 138H349.5C349.5 126.954 358.454 118 369.5 118C380.546 118 389.5 126.954 389.5 138C389.5 138 398 138 398 138C409.046 138 418 146.954 418 158C418 169.046 409.046 178 398 178H387V158Z"
-};
-
 
 const toggleTheme = () => {
-    // theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark';
     if (theme.global.current.value.dark) {
       theme.change('light');
     } else {
       theme.change('dark');
     }
-    // isDark.value = !isDark.value;
 };
-
-// const toggleTheme = () => {
-//   isDark.value = !isDark.value;
-// };
 </script>

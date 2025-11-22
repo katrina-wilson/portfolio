@@ -3,16 +3,15 @@
     ref="container"
     class="tw:relative tw:w-full tw:max-w-[800px] tw:mx-auto tw:my-12 tw:cursor-pointer tw:flex tw:items-center tw:justify-center tw:aspect-[2/1]"
   >
-    <img
-      src="@/assets/logic-brain.svg"
+    <LogicBrain
       class="tw:absolute tw:top-0 tw:left-0 tw:w-full tw:h-full tw:object-contain"
       :style="{ clipPath: `inset(0 ${containerWidth - dividerX}px 0 0)` }"
     />
-    <img
-      src="@/assets/creative-brain.svg"
+    <CreativeBrain
       class="tw:absolute tw:top-0 tw:left-0 tw:w-full tw:h-full tw:object-contain"
       :style="{ clipPath: `inset(0 0 0 ${dividerX}px)` }"
     />
+
 
     <div
       class="tw:absolute tw:left-0 tw:top-1/2 tw:-translate-y-1/2 
@@ -49,7 +48,7 @@
 
     <div
       v-if="!isMobile"
-      class="tw:absolute tw:top-0 tw:h-full tw:w-[2px] tw:bg-black tw:pointer-events-none"
+      class="tw:absolute tw:top-0 tw:h-full tw:w-0.5 tw:bg-brain tw:pointer-events-none"
       :style="{ left: dividerX + 'px' }"
     />
   </div>
@@ -58,6 +57,8 @@
 <script setup>
 import { ref, computed, onMounted, nextTick } from "vue";
 import gsap from "gsap";
+import LogicBrain from "@/components/brains/LogicBrain.vue";
+import CreativeBrain from "@/components/brains/CreativeBrain.vue";
 
 const container = ref(null);
 const containerWidth = ref(800);
