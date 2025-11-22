@@ -183,12 +183,11 @@
 </template>
   
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 import { gsap } from 'gsap';
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 
 gsap.registerPlugin(DrawSVGPlugin);
-
 
 // K Character refs
 const svgKRef = ref(null);
@@ -199,7 +198,6 @@ const ouchGroupRef = ref(null);
 const kViewBox = ref("30 60 450 450");
 const [kViewBoxX, kViewBoxY, kViewBoxWidth, kViewBoxHeight] = kViewBox.value.split(" ");
 
-  
 // W Character refs
 const svgWRef = ref(null);
 const bigWRef = ref(null);
@@ -210,14 +208,14 @@ const WLegLRef = ref(null);
 const WLegRRef = ref(null);
 const wViewBox = ref("335 10 390 550");
 
-let mainTlC = null;
-let tlC = null;
-let patternTlC = null;
+let mainTlK = null;
+let tlK = null;
+let patterntlK = null;
 let ouchTl = null;
 
-let mainTlO = null;
-let tlO = null;
-let patternTlO = null;
+let mainTlW = null;
+let tlW = null;
+let patterntlW = null;
 
 const legLUpArr = "385.5 323.5 389.5 377.5 389.5 425.5 415 425.5".split(' ').map(Number);
 const legRUpArr = "404.5 327.5 406.5 374.5 404.5 414.5 428 414.5".split(' ').map(Number);
@@ -228,10 +226,10 @@ let legRDownArr = [];
 const updateViewBoxes = () => {
   const width = window.innerWidth;
 
-  if (width < 640) { // small screen
+  if (width < 640) {
     kViewBox.value = "230 110 270 350";
     wViewBox.value = "335 10 230 550";
-  } else { // larger screens
+  } else {
     kViewBox.value = "30 60 450 450";
     wViewBox.value = "335 10 390 550";
   }
@@ -257,16 +255,16 @@ onMounted(() => {
     const ouchLines = ouchGroupRef.value.querySelectorAll('line');
     gsap.set(ouchLines, { drawSVG: '0% 0%' });
 
-    tlC = gsap.timeline({ 
+    tlK = gsap.timeline({ 
         repeat: -1, 
         yoyo: true, 
         repeatDelay: 1, 
         onUpdate: onUpdateC 
     });
 
-    tlC.timeScale(3);
+    tlK.timeScale(3);
 
-    tlC.to(legLDownArr, {
+    tlK.to(legLDownArr, {
         duration: 2,
         endArray: legLUpArr,
         ease: 'back.inOut(1.5)',
@@ -297,10 +295,10 @@ onMounted(() => {
         ease: 'back.inOut(1.5)'
     }, '-=2');
 
-    patternTlC = gsap.timeline();
+    patterntlK = gsap.timeline();
     const patternCircles = document.querySelectorAll('#kBg circle');
 
-    patternTlC.to(patternCircles, {
+    patterntlK.to(patternCircles, {
         duration: 0.3,
         fillOpacity: (i) => i === 0 ? 1 : 0,
         repeat: -1,
@@ -331,10 +329,10 @@ onMounted(() => {
         stagger: 0.1
     }, '-=0.2');
 
-    mainTlC = gsap.timeline();
-    mainTlC.add([tlC, patternTlC], 0);
+    mainTlK = gsap.timeline();
+    mainTlK.add([tlK, patterntlK], 0);
 
-    //O Character Animation
+    // W Character Animation
     const OArmLUpArr = "358.5 170.54 324 167.5 340 128.5".split(' ').map(Number);
     const OArmRUpArr = "460 170.5 498.5 164.5 486 128.5".split(' ').map(Number);
     const WArmLDownArr = WArmLDownRef.value.getAttribute('points').split(' ').map(Number);
@@ -349,16 +347,16 @@ onMounted(() => {
         WArmRDownRef.value.setAttribute('points', OArmRTempArr.join(' '));
     };
 
-    mainTlO = gsap.timeline();
-    tlO = gsap.timeline({ 
+    mainTlW = gsap.timeline();
+    tlW = gsap.timeline({ 
         repeat: -1, 
         repeatDelay: 3, 
         onUpdate: onUpdateO 
     });
 
-    tlO.timeScale(3);
+    tlW.timeScale(3);
 
-    tlO.to(OArmLTempArr, {
+    tlW.to(OArmLTempArr, {
         endArray: OArmLUpArr,
         ease: 'back.out(1.5)',
         duration: 4
@@ -432,29 +430,29 @@ onMounted(() => {
         stagger: 0
     }, '-=1');
 
-    patternTlO = gsap.timeline({ repeat: -1, yoyo: true });
-    patternTlO.to('#wBg circle', {
+    patterntlW = gsap.timeline({ repeat: -1, yoyo: true });
+    patterntlW.to('#wBg circle', {
         fillOpacity: (i) => i === 0 ? 1 : 0,
         ease: 'none',
         duration: 0.4,
         stagger: 0
     });
 
-    mainTlO.add(tlO, 0);
-    mainTlO.add(patternTlO, 0);
+    mainTlW.add(tlW, 0);
+    mainTlW.add(patterntlW, 0);
 });
   
 onUnmounted(() => {
     window.removeEventListener("resize", updateViewBoxes);
 
-    if (mainTlC) mainTlC.kill();
-    if (tlC) tlC.kill();
-    if (patternTlC) patternTlC.kill();
+    if (mainTlK) mainTlK.kill();
+    if (tlK) tlK.kill();
+    if (patterntlK) patterntlK.kill();
     if (ouchTl) ouchTl.kill();
 
-    if (mainTlO) mainTlO.kill();
-    if (tlO) tlO.kill();
-    if (patternTlO) patternTlO.kill();
+    if (mainTlW) mainTlW.kill();
+    if (tlW) tlW.kill();
+    if (patterntlW) patterntlW.kill();
 });
 </script>
   

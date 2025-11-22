@@ -1,7 +1,5 @@
 <template>
   <div class="top-nav tw:fixed tw:top-0 tw:left-0 tw:right-0 tw:z-50 tw:bg-background/80 tw:backdrop-blur-md tw:border-b tw:border-border">
-
-    <!-- Navigation Component (Mobile) -->
     <Navigation
       :navItems="navItems"
       :activeSection="activeSection"
@@ -9,7 +7,6 @@
       @mobileDrawerToggle="(v) => isOpen = v"
       @selectMobile="(v) => selectMobile(v)"
     />
-
     <div class="tw:mx-auto tw:px-6 tw:py-4 tw:flex tw:items-center tw:justify-between">
       <img 
         :src="isDark ? colorfulLogo : logo" 
@@ -17,8 +14,6 @@
         class="h-6 w-6 cursor-pointer" 
         @click="scrollToSection('home')"
       />
-
-      <!-- Desktop Nav -->
       <div class="tw:hidden tw:md:flex tw:items-center">
         <v-tabs
           v-model="activeSection"
@@ -49,12 +44,13 @@
           @click="isOpen = true"
         />
       </div>
+
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
+import { ref, computed, onMounted, onUnmounted } from "vue";
 import { useTheme } from "vuetify";
 import Navigation from "@/components/Mobile/Navigation.vue";
 import ThemeToggle from "@/components/ThemeToggle.vue";
@@ -62,7 +58,6 @@ import logo from '@/assets/logo.svg';
 import colorfulLogo from '@/assets/colorful-logo.svg';
 
 const theme = useTheme();
-const isDark = computed(() => theme.global.current.value.dark);
 
 const isOpen = ref(false);
 const activeSection = ref("home");
@@ -76,6 +71,8 @@ const navItems = [
   { id: "about", label: "About" },
   { id: "contact", label: "Contact" },
 ];
+
+const isDark = computed(() => theme.global.current.value.dark);
 
 const updateSections = () => {
   sections.value = navItems.map(item => {

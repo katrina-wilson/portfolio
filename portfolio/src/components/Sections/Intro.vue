@@ -1,7 +1,6 @@
 <template>
     <section
       id="home"
-      ref="introRef"
       class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:flex tw:flex-col tw:items-center tw:justify-center tw:bg-gradient-to-br tw:from-background tw:via-muted/30 tw:to-background"
     >
       <div class="tw:mx-auto tw:px-6 tw:text-center tw:z-10">

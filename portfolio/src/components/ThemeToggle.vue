@@ -12,7 +12,6 @@
           preserveAspectRatio="xMidYMid meet"
           viewBox="-100 0 620 319"
         >
-          <!-- Background track with animated color transition -->
           <rect
             :fill="isDark ? '#121820' : '#5F9EFF'"
             :stroke="isDark ? '#FFFFFF' : '#588DDF'"
@@ -25,7 +24,6 @@
             style="transition: fill 0.5s ease, stroke 0.5s ease"
           />
           
-          <!-- Stars - fade out when light mode -->
           <g 
             :style="{ 
               opacity: isDark ? 1 : 0,
@@ -37,7 +35,6 @@
             <path :d="svgPathsDark.star3" fill="white" />
           </g>
           
-          <!-- Clouds - fade in when light mode -->
           <g 
             :style="{ 
               opacity: isDark ? 0 : 1,
@@ -73,14 +70,12 @@
             />
           </g>
           
-          <!-- Animated sliding circle - sun or moon -->
           <g 
             :style="{ 
               transform: `translateX(${isDark ? 0 : -283}px)`,
               transition: 'transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1)'
             }"
           >
-            <!-- Sun circle - visible in light mode -->
             <rect
               fill="#FFCB01"
               height="150"
@@ -94,7 +89,6 @@
               }"
             />
             
-            <!-- Moon crescent - visible in dark mode -->
             <path
               :d="svgPathsDark.moon"
               fill="white"
@@ -118,14 +112,12 @@ import { useTheme } from "vuetify";
 const theme = useTheme();
 const isDark = computed(() => theme.global.current.value.dark);
 
-// SVG path data
 const svgPathsDark = {
   star1: 'M162.5 128 L175 107 L187.5 128 L212.5 134.5 L187.5 139.5 L175 164.5 L162.5 139.5 L137.5 134.5 L162.5 128 Z',
   star2: "M265 204 L275 189 L284 204 L302 208 L284 212 L275 229 L265 212 L248 208 L265 204 Z",
   star3: "M345 154 L355 139 L364 154 L382 158 L364 162 L355 179 L345 162 L328 158 L345 154 Z",
   moon: "M417.5 88 C458.9214 88 492.5 121.5786 492.5 163 C492.5 204.421 458.9214 238 417.5 238 C404.6567 238 392.5681 234.77 382 229.081 C405.5155 216.422 421.5 191.578 421.5 163 C421.5 134.4218 405.5157 109.5774 382 96.91797 C392.568 91.22877 404.6569 88 417.5 88 Z",
 };
-
 
 const toggleTheme = () => {
     if (theme.global.current.value.dark) {

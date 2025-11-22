@@ -9,7 +9,7 @@ const router = createRouter({
       component: () => import('@/layouts/Layout.vue'),
       redirect: (to) => ({ name: 'Home' }),
       meta: {
-        requiresAuth: false, // TODO: true, implement auth
+        requiresAuth: false,
       },
       children: [
         {
@@ -17,15 +17,10 @@ const router = createRouter({
           name: 'Home',
           component: () => import('@/views/Home.vue'),
         },
-        // {
-        //   path: '/about',
-        //   name: 'About',
-        //   component: () => import('@/views/AboutView.vue'),
-        // },
       ]
     },
 
   ],
 });
 
-export default router
+export default router;

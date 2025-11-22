@@ -12,7 +12,6 @@
       :style="{ clipPath: `inset(0 0 0 ${dividerX}px)` }"
     />
 
-
     <div
       class="tw:absolute tw:left-0 tw:top-1/2 tw:-translate-y-1/2 
              tw:px-2 tw:text-foreground tw:text-lg tw:md:text-2xl 
@@ -37,8 +36,7 @@
              tw:pointer-events-none"
       :style="{ opacity: rightTextOpacity }"
     >
-      <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-3xl designer-font"
-            style="font-family: 'Limelight';">
+      <span class="tw:font-semibold tw:text-base tw:sm:text-lg tw:md:text-3xl design-font">
         Designer
       </span>
       <span class="roboto-font tw:text-[10px] tw:sm:text-xs tw:md:text-sm tw:pt-3">

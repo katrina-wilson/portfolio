@@ -1,5 +1,5 @@
 <template>
-  <div class="project-card tw:group tw:cursor-pointer">
+  <div class="project-card tw:group tw:cursor-pointer tw:h-full tw:w-full">
     <v-card
       class="mx-auto pa-1 tw:border tw:border-muted-foreground/30 tw:flex tw:flex-col"
       max-width="600"
@@ -95,10 +95,3 @@ const getSkillCategorySnakeCase = (tag) => {
   return 'brain';
 };
 </script>
-
-<style scoped>
-.project-card {
-  height: 100%;
-  width: 100%;
-}
-</style>

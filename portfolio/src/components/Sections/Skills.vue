@@ -48,12 +48,14 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import SkillCard from "@/components/SkillCard.vue";
 
 gsap.registerPlugin(ScrollTrigger);
+
 const theme = useTheme();
 
 const chartRef = ref(null);
 const currentSkill = ref(null);
 const isAnimating = ref(true);
 const color = ref(null);
+const legendHtmlRef = ref(null);
 
 let svg, slicesG, legendG, arcGen, hoverArcGen, pieGen;
 let sliceGroups;
@@ -71,8 +73,6 @@ const getFontSize = (innerRadius, outerRadius) => {
   const radius = (innerRadius + outerRadius) / 2;
   return Math.max(10, radius * 0.10); 
 };
-
-const legendHtmlRef = ref(null);
 
 const addLegend = () => {
   if (!legendG || !legendHtmlRef.value) return;

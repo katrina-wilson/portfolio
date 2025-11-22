@@ -1,7 +1,7 @@
 <template>
     <div class="tw:flex tw:flex-col tw:h-full tw:w-full">
         <TopNav/>
-        <main class="tw:flex tw:flex-grow tw:w-full tw:overflow-y-auto">
+        <main class="tw:flex tw:grow tw:w-full tw:overflow-y-auto">
             <RouterView
                 v-slot="{ Component }"
             >

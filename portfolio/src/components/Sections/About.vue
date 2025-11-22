@@ -1,8 +1,8 @@
 <template>
-    <section
-      id="about"
-      class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:pt-18 tw:flex tw:flex-col tw:items-center"
-    >
+  <section
+    id="about"
+    class="tw:min-h-screen tw:max-h-fit tw:mb-50 tw:pt-18 tw:flex tw:flex-col tw:items-center"
+  >
     <div class="tw:h-full tw:flex tw:flex-col tw:w-full tw:px-6 tw:items-center">
       <h2
         class="tw:flex tw:items-center tw:justify-center tw:w-full tw:text-5xl tw:md:text-6xl tw:font-bold tw:text-center tw:text-foreground tw:pb-3"
@@ -19,7 +19,7 @@
           reliable experiences end to end.
         </p>
 
-        <Brain/>
+        <BrainBase/>
 
         <p class="tw:text-lg tw:text-muted-foreground tw:leading-relaxed tw:text-center">
           Outside of work, I’m usually diving into some kind of project—tech, creative, or completely 
@@ -34,9 +34,5 @@
 </template>
   
 <script setup>
-import { onMounted } from "vue";
-import Brain from "@/components/Brain.vue";
-
-onMounted(() => {
-});
+import BrainBase from "@/components/brains/BrainBase.vue";
 </script>
