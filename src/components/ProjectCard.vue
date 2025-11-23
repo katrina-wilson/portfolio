@@ -51,14 +51,14 @@
           </div>
           <div>
             <v-btn
-              prepend-icon="mdi-gitlab"
-              :href="props.project?.gitlab"
+              prepend-icon="mdi-github"
+              :href="props.project?.github"
               target="_blank"
               text="View Code"
-              :disabled="!props.project?.gitlab"
+              :disabled="!props.project?.github"
             />
             <v-tooltip
-              v-if="!props.project?.gitlab"
+              v-if="!props.project?.github"
               activator="parent"
               text="Coming Soon!"
             />

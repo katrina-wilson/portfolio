@@ -52,7 +52,7 @@ export const projects = [
         description:
         "Designed and developed a personal portfolio website using Vue.js, GSAP for animations, Vuetify for base components, and Tailwind for styling to effectively showcase my projects and skills.",
         link: null,
-        gitlab: "#",
+        github: "https://github.com/katrina-wilson/portfolio",
     },
     {
         id: 1,
@@ -62,7 +62,7 @@ export const projects = [
         description:
         "Built a full-stack recipe book application with user authentication, recipe management, and meal planning features. Developed both web and mobile versions for cross-platform accessibility.",
         link: null,
-        gitlab: null,
+        github: null,
     },
     {
         id: 2,
@@ -72,7 +72,7 @@ export const projects = [
         description:
         "Created an AI-powered story rewriting system that leverages NLP models to assist writers in enhancing their narratives through suggestions and automated edits.",
         link: null,
-        gitlab: null,
+        github: null,
     },
     {
         id: 3,
@@ -82,7 +82,7 @@ export const projects = [
         description:
         "Developed an analytics dashboard featuring interactive charts, real-time data updates, and custom visualizations for business metrics.",
         link: null,
-        gitlab: null,
+        github: null,
     },
 ];
 
