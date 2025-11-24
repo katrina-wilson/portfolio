@@ -6,9 +6,9 @@ export const light = {
     brain: '#000000',
     'brain-secondary': '#313534',
 
-    'front-end-development': '#14678B',
+    'frontend-development': '#14678B',
     'ui-ux-design': '#3B2B4B',
-    'back-end-development': '#3B5720',
+    'backend-development': '#3B5720',
     'data-science': '#7A5C00',
 
     foreground: '#2a303b',
@@ -25,9 +25,9 @@ export const dark = {
     brain: '#FFF6DF',
     'brain-secondary': '#F7EBE8',
 
-    'front-end-development': '#4EC5D6',
+    'frontend-development': '#4EC5D6',
     'ui-ux-design': '#C19CFF',
-    'back-end-development': '#8FC14A',
+    'backend-development': '#8FC14A',
     'data-science': '#FFD166',
 
     foreground: '#FFFFFF',

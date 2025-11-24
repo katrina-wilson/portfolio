@@ -24,7 +24,7 @@
         &lt;Developer/&gt;
       </span>
       <span class="roboto-font tw:text-sm tw:md:text-base tw:pt-3">
-        I build clean, efficient, and scalable front-end and full-stack applications.
+        I build clean, efficient, and scalable frontend and full-stack applications.
       </span>
     </div>
 

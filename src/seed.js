@@ -14,7 +14,7 @@ export const roles = [
 
 export const skills = [
     { 
-        name: "Front End Development", 
+        name: "Frontend Development", 
         value: 62, 
         color: "#3F98B1",
         tags: ["Vue", "React", "Tailwind", "Vuetify", "GSAP", "D3.js", "Typescript", "JavaScript", "Material UI", "Vuex", "Data Visualization", "Pinia", "Redux", "Tauri", "Mobile Development"], 
@@ -28,7 +28,7 @@ export const skills = [
         level: 'Advanced',
     },
     { 
-        name: "Back End Development", 
+        name: "Backend Development", 
         value: 10, 
         color: "#003C80",
         tags: ["Node.js", "FastAPI", "PostgreSQL", "REST APIs", "Authentication", "SQLAlchemy", "Alembic", "Knex", "Objection"], 

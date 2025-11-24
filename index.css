@@ -8,9 +8,9 @@
     --color-brain: rgb(var(--v-theme-brain));
     --color-brain-secondary: rgb(var(--v-theme-brain-secondary));
 
-    --color-front-end-development: rgb(var(--v-theme-front-end-development));
+    --color-frontend-development: rgb(var(--v-theme-frontend-development));
     --color-ui-ux-design: rgb(var(--v-theme-ui-ux-design));
-    --color-back-end-development: rgb(var(--v-theme-back-end-development));
+    --color-backend-development: rgb(var(--v-theme-backend-development));
     --color-data-science: rgb(var(--v-theme-data-science));
 
     --color-foreground: rgb(var(--v-theme-foreground));

@@ -4,7 +4,7 @@ Hey, welcome to my portfolio! This repository contains the source code for my pe
 
 ## 🔧 Built With
 
-- **Front-End:** Vue.js, Tailwind CSS, Vuetify
+- **Frontend:** Vue.js, Tailwind CSS, Vuetify
 - **Animations:** GSAP
 - **State Management:** Pinia
 - **Design:** Figma

@@ -15,7 +15,7 @@
         <p class="about-item tw:text-xl tw:text-muted-foreground tw:leading-relaxed tw:text-center">
           I’m a full-stack developer with a strong front-end focus, blending design intuition 
           with solid engineering. I specialize in Vue and modern front-end tooling, and I enjoy 
-          building interfaces that feel as good to use as they look. On the back end, I’m comfortable 
+          building interfaces that feel as good to use as they look. On the backend, I’m comfortable 
           architecting APIs, working with databases, and putting all the pieces together to create smooth, 
           reliable experiences end to end.
         </p>
