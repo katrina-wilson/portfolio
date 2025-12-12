@@ -4,6 +4,7 @@
     --color-background: rgb(var(--v-theme-background));
 
     --color-primary: rgb(var(--v-theme-primary));
+    --color-warning: rgb(var(--v-theme-warning));
     
     --color-brain: rgb(var(--v-theme-brain));
     --color-brain-secondary: rgb(var(--v-theme-brain-secondary));

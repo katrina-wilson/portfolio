@@ -2,6 +2,7 @@ export const light = {
     background: '#FFF6DF',
 
     primary: '#C05746',
+    warning: '#CB7014',
 
     brain: '#000000',
     'brain-secondary': '#313534',
@@ -21,6 +22,7 @@ export const dark = {
     background: '#1D201F',
 
     primary: '#E56D59',
+    warning: '#CB7014',
 
     brain: '#FFF6DF',
     'brain-secondary': '#F7EBE8',

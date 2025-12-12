@@ -52,25 +52,29 @@ export const projects = [
         "Designed and developed a personal portfolio website using Vue.js, GSAP for animations, Vuetify for base components, and Tailwind for styling to effectively showcase my projects and skills.",
         link: null,
         github: "https://github.com/katrina-wilson/portfolio",
+        isWip: false,
     },
     {
         id: 1,
+        title: "Triangle Park Finder",
+        tags: ["Pandas", "GeoPandas", "Python", "scikit-learn", "FastAPI", "SQLAlchemy", "Pydantic", "React", "TypeScript", "Figma"],
+        description:
+        "Full-stack web application that recommends parks in the Triangle area based on user preferences using cosine similarity. Features an interactive front-end and robust back-end to deliver personalized, data-driven suggestions.",
+        link: null,
+        github: 'https://github.com/katrina-wilson/park-finder',
+        isWip: true,
+    },
+    {
+        id: 2,
         title: "Recipe Book",
         tags: ["Vue", "Tailwind", "Mobile Development", "FastAPI", "SQLAlchemy", "Alembic", "Figma", "User Research", "Usability Testing"],
         description:
         "Built a full-stack recipe book application with user authentication, recipe management, and meal planning features. Developed both web and mobile versions for cross-platform accessibility.",
         link: null,
         github: null,
+        isWip: false,
     },
-    {
-        id: 2,
-        title: "Triangle Park Finder",
-        tags: ["Pandas", "GeoPandas", "Python", "scikit-learn", "FastAPI", "SQLAlchemy", "Pydantic", "React", "TypeScript", "Figma"],
-        description:
-        "Full-stack web application that recommends parks in the Triangle area based on user preferences using cosine similarity. Features an interactive front-end and robust back-end to deliver personalized, data-driven suggestions.",
-        link: null,
-        github: null,
-    },
+
     {
         id: 3,
         title: "Dashboard Analytics",
@@ -79,6 +83,7 @@ export const projects = [
         "Developed an analytics dashboard featuring interactive charts, real-time data updates, and custom visualizations for business metrics.",
         link: null,
         github: null,
+        isWip: false,
     },
 ];
 

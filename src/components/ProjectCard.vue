@@ -9,8 +9,25 @@
       elevation="0"
       style="height: 100%; width: 100%;"
     >
-      <v-card-title class="tw-pb-2 tw:font-bold">
-        {{ props.project.title }}
+      <v-card-title class="tw:flex tw-pb-2 tw:font-bold">
+        <div class="tw:w-full">
+          {{ props.project.title }}
+        </div>
+        <div 
+          v-if="props.project?.isWip"
+          class="tw:w-fit tw:text-sm tw:text-warning"
+        >
+          <v-chip
+            prepend-icon="mdi-alert"
+            text="WIP"
+            color="warning"
+            size="small"
+          />
+          <v-tooltip
+            activator="parent"
+            text="Work In Progress"
+          />
+        </div>
       </v-card-title>
       <v-card-text class="tw:pb-2 tw:flex-1 tw:flex tw:flex-col">
         <div class="tw:pb-3 tw:text-muted-foreground tw:flex-1">
